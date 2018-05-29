@@ -57,6 +57,7 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+.vs/
 
 # Chutzpah Test files
 _Chutzpah*
@@ -73,6 +74,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.vs
 
 # TFS 2012 Local Workspace
 $tf/
@@ -190,3 +192,11 @@ git_stats/*
 StyleCop.Cache
 bin
 obj
+.vs/CardEngine/v15/Server/sqlite3/db.lock
+.vs/CardEngine/v15/Server/sqlite3/storage.ide
+.vs/CardEngine/v15/Server/sqlite3/storage.ide-shm
+.vs/CardEngine/v15/Server/sqlite3/storage.ide-wal
+.vs/CardEngine/v15/Server/sqlite3/db.lock
+.vs/CardEngine/v15/Server/sqlite3/storage.ide
+.vs/CardEngine/v15/Server/sqlite3/storage.ide-shm
+.vs/CardEngine/v15/Server/sqlite3/storage.ide-wal

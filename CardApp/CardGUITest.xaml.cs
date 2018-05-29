@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CardApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CardGUITest.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
-        {
-        public MainWindow()
+    public partial class CardGUITest : Window
+    {
+        public CardGUITest()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window w = new CardGUITest();
-            w.Show();
         }
     }
 }

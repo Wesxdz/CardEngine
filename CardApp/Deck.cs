@@ -13,7 +13,10 @@ namespace CardEngine {
         public Deck() {
             
         }
-
+        /// <summary>
+        /// Creates a standard deck of 52 cards ranging from 1 - 13 with suits of 0 - 3
+        /// </summary>
+        /// <returns></returns>
         public static Deck CreateStandardDeck() {
             Deck deck = new Deck();
 

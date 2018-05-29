@@ -4,10 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardEngine
+namespace CardApp
 {
-    abstract class CardGame
+
+    public enum GameType
     {
+        War,
+        GoFish,
+        Blackjack
+    }
+
+    abstract class Game
+    {
+        public GameType type;
         public abstract void Start();
         public abstract void Exit();
         public abstract void Save(string path);

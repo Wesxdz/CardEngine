@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="HomePage.xaml">
     <Page Include="CardGUITest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,10 +69,14 @@
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CardGame.cs" />
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Deck.cs" />
+    <Compile Include="GoFishGame.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

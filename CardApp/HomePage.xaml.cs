@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace CardApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
-        {
-        public MainWindow()
+    public partial class HomePage : Page
+    {
+        public HomePage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window w = new CardGUITest();
-            w.Show();
         }
     }
 }

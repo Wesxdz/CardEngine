@@ -57,6 +57,7 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+.vs/
 
 # Chutzpah Test files
 _Chutzpah*
@@ -73,6 +74,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.vs
 
 # TFS 2012 Local Workspace
 $tf/

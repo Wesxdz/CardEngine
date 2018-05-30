@@ -8,10 +8,12 @@ using System.Windows;
 namespace CardApp {
     public class GoFishGame : Game {
 
+		public static int PLAYER_AMO = 2;
         public static int STARTING_CARDS = 5;
         Deck deck;
 
         public struct Player {
+			public string name;
             public Deck Hand;
             public Deck Pairs;
         }
@@ -42,13 +44,15 @@ namespace CardApp {
             deck.Shuffle();
 
             // How do we get the amount of Players????
-            players = new Player[2];
+            players = new Player[PLAYER_AMO];
             currPlayer = 0;
+			
 
             for(int i = 0; i < players.Length; i++) {
                 players[i] = new Player();
             }
 
+			STARTING_CARDS = PLAYER_AMO == 2 ? 7 : 5;
             for (int i = 0; i < STARTING_CARDS; i++) {
                 for(int y = 0; y < players.Length; y++) {
                     Card playerCard = deck.GetCard(deck.cards.Count - 1);
@@ -156,6 +160,6 @@ namespace CardApp {
 }
 
 // Requirements - 
-// Starting Amount of Players
 // End Game
 // Win Detection
+// Names

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardEngine {
+namespace CardApp {
     public class Deck {
 
         public List<Card> cards = new List<Card>();

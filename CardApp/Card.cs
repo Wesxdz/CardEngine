@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace CardEngine {
+namespace CardApp {
     public class Card {
         /// <summary>
         /// This is the Number of Card, i.e 1, 2, 3, 4... 

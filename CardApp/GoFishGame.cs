@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardEngine {
-    /*public */class GoFishGame : CardGame {
+namespace CardApp {
+    /*public */class GoFishGame : Game {
 
         Deck deck;
         // Players 2 - 4

@@ -17,12 +17,13 @@ namespace CardApp
     /// <summary>
     /// Interaction logic for CardGUITest.xaml
     /// </summary>
-    public partial class CardGUITest : Window
+    public partial class CardGUITest : Page
     {
         private Canvas canvas;
         private Rectangle card;
-        private Button move;
+        private Button move, flip;
         int x = 0, y = 0;
+        private bool faceUp = false;
         public CardGUITest()
         {
             InitializeComponent();
@@ -44,22 +45,48 @@ namespace CardApp
             move = new Button();
             move.Content = "Move";
 
-            move.Click += Button_Click;
+            move.Click += Move_btn_Click;
 
             Canvas.SetLeft(move, 600);
             Canvas.SetTop(move, 350);
 
             canvas.Children.Add(move);
+
+
+
+            flip = new Button();
+            flip.Content = "Flip";
+
+            flip.Click += Flip_btn_Click;
+
+            Canvas.SetLeft(flip, 630);
+            Canvas.SetTop(flip, 350);
+
+            canvas.Children.Add(flip);
             Content = canvas;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Move_btn_Click(object sender, RoutedEventArgs e)
         {
             x += 5;
             y += 5;
             Canvas.SetLeft(card, x);
             Canvas.SetTop(card, y);
 
+        }
+
+        private void Flip_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (faceUp)
+            {
+                card.Fill = new SolidColorBrush(Colors.Red);
+                faceUp = false;
+            }
+            else
+            {
+                card.Fill = new SolidColorBrush(Colors.Blue);
+                faceUp = true;
+            }
         }
     }
 }

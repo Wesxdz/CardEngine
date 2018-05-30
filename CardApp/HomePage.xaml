@@ -15,5 +15,16 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Button Name="btnPlay" Grid.Row="0" Grid.Column="1" Content="Play Black Jack" Margin="50.333,45,48.333,55" Click="btnPlay_Click"/>
+        <Button Name="btnPlayGoFish" Grid.Row="0" Grid.Column="1" Content="Play Go Fish" Margin="50.333,100,48.333,0" Click="btnPlayGoFish_Click" />
+        <Button Name="btnPlayWar" Grid.Row="1" Grid.Column="1" Content="Play War" Margin="50.333,5,48.333,95" Click="btnPlayWar_Click" />
+        <Button Name="btnPlayPoker" Grid.Row="1" Grid.Column="1" Content="Play Poker" Margin="50.333,60,48.333,40" Click="btnPlayPoker_Click" />
+        <Button Name="btnQuit" Grid.Row="2" Grid.Column="1" Content="Quit" Margin="50.333,52,48.333,52"/>
     </Grid>
 </Page>

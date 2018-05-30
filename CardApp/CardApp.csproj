@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,13 +56,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CardVisualizationTest.xaml.cs">
+      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Persistence.Designer.cs">
+      <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
     <Compile Include="War.cs" />
     <Page Include="CardGUITest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    <Page Include="CardVisualizationTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
@@ -99,6 +113,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Persistence.resx">
+      <DependentUpon>Persistence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -110,6 +127,60 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\10C.png" />
+    <Resource Include="Images\Cards\10D.png" />
+    <Resource Include="Images\Cards\10S.png" />
+    <Resource Include="Images\Cards\2C.png" />
+    <Resource Include="Images\Cards\2D.png" />
+    <Resource Include="Images\Cards\2H.png" />
+    <Resource Include="Images\Cards\2S.png" />
+    <Resource Include="Images\Cards\3C.png" />
+    <Resource Include="Images\Cards\3D.png" />
+    <Resource Include="Images\Cards\3H.png" />
+    <Resource Include="Images\Cards\3S.png" />
+    <Resource Include="Images\Cards\4C.png" />
+    <Resource Include="Images\Cards\4D.png" />
+    <Resource Include="Images\Cards\4H.png" />
+    <Resource Include="Images\Cards\4S.png" />
+    <Resource Include="Images\Cards\5C.png" />
+    <Resource Include="Images\Cards\5D.png" />
+    <Resource Include="Images\Cards\5H.png" />
+    <Resource Include="Images\Cards\5S.png" />
+    <Resource Include="Images\Cards\6C.png" />
+    <Resource Include="Images\Cards\6D.png" />
+    <Resource Include="Images\Cards\6H.png" />
+    <Resource Include="Images\Cards\6S.png" />
+    <Resource Include="Images\Cards\7C.png" />
+    <Resource Include="Images\Cards\7D.png" />
+    <Resource Include="Images\Cards\7H.png" />
+    <Resource Include="Images\Cards\7S.png" />
+    <Resource Include="Images\Cards\8C.png" />
+    <Resource Include="Images\Cards\8D.png" />
+    <Resource Include="Images\Cards\8H.png" />
+    <Resource Include="Images\Cards\8S.png" />
+    <Resource Include="Images\Cards\9C.png" />
+    <Resource Include="Images\Cards\9D.png" />
+    <Resource Include="Images\Cards\9H.png" />
+    <Resource Include="Images\Cards\9S.png" />
+    <Resource Include="Images\Cards\AC.png" />
+    <Resource Include="Images\Cards\AD.png" />
+    <Resource Include="Images\Cards\AH.png" />
+    <Resource Include="Images\Cards\AS.png" />
+    <Resource Include="Images\Cards\gray_back.png" />
+    <Resource Include="Images\Cards\JC.png" />
+    <Resource Include="Images\Cards\JD.png" />
+    <Resource Include="Images\Cards\JH.png" />
+    <Resource Include="Images\Cards\JS.png" />
+    <Resource Include="Images\Cards\KC.png" />
+    <Resource Include="Images\Cards\KD.png" />
+    <Resource Include="Images\Cards\KH.png" />
+    <Resource Include="Images\Cards\KS.png" />
+    <Resource Include="Images\Cards\QC.png" />
+    <Resource Include="Images\Cards\QD.png" />
+    <Resource Include="Images\Cards\QH.png" />
+    <Resource Include="Images\Cards\QS.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,7 +26,7 @@ namespace CardApp
         private bool faceUp = false;
         public CardGUITest()
         {
-            InitializeComponent();
+            //InitializeComponent();
 
             canvas = new Canvas();
             canvas.Background = new SolidColorBrush(Colors.LightCyan);

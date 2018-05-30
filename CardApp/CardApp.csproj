@@ -55,11 +55,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Page Include="HomePage.xaml">
     <Page Include="CardGUITest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> parent of d06bd3c... Merge branch 'master' of https://github.com/Wesxdz/CardEngine
 =======
 >>>>>>> parent of d06bd3c... Merge branch 'master' of https://github.com/Wesxdz/CardEngine
     <Page Include="MainWindow.xaml">
@@ -73,12 +76,15 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardGame.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of d06bd3c... Merge branch 'master' of https://github.com/Wesxdz/CardEngine
 =======
 >>>>>>> parent of d06bd3c... Merge branch 'master' of https://github.com/Wesxdz/CardEngine
     <Compile Include="Deck.cs" />

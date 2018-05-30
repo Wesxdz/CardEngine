@@ -131,6 +131,7 @@
   <ItemGroup>
     <Resource Include="Images\Cards\10C.png" />
     <Resource Include="Images\Cards\10D.png" />
+    <Resource Include="Images\Cards\10H.png" />
     <Resource Include="Images\Cards\10S.png" />
     <Resource Include="Images\Cards\2C.png" />
     <Resource Include="Images\Cards\2D.png" />

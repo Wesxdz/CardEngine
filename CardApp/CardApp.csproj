@@ -36,8 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,13 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Persistence.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Persistence.Designer.cs">
-      <DependentUpon>Persistence.cs</DependentUpon>
-    </Compile>
-    <Compile Include="War.cs" />
+    <Page Include="CardGUITest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +68,9 @@
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CardGame.cs" />
+    <Compile Include="CardGUITest.xaml.cs">
+      <DependentUpon>CardGUITest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -93,9 +91,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Persistence.resx">
-      <DependentUpon>Persistence.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

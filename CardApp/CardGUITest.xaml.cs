@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using System.Windows;
+//using System.Windows.Controls;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 
 namespace CardApp
 {
@@ -27,28 +27,33 @@ namespace CardApp
         public CardGUITest()
         {
             //InitializeComponent();
+           canvas = new Canvas();
+           canvas.Background = new SolidColorBrush(Colors.LightCyan);
 
-            canvas = new Canvas();
-            canvas.Background = new SolidColorBrush(Colors.LightCyan);
+           card = new Rectangle();
+           card.Width = 50;
+           card.Height = 75;
+           card.Fill = new SolidColorBrush(Colors.Red);
 
-            card = new Rectangle();
-            card.Width = 50;
-            card.Height = 75;
-            card.Fill = new SolidColorBrush(Colors.Red);
+           Canvas.SetLeft(card, x);
+           Canvas.SetTop(card, y);
 
-            Canvas.SetLeft(card, x);
-            Canvas.SetTop(card, y);
-
-            canvas.Children.Add(card);
+           canvas.Children.Add(card);
 
 
-            move = new Button();
-            move.Content = "Move";
+           move = new Button();
+           move.Content = "Move";
 
+           move.Click += Button_Click;
+
+           Canvas.SetLeft(move, 600);
+           Canvas.SetTop(move, 350);
             move.Click += Move_btn_Click;
 
-            Canvas.SetLeft(move, 600);
-            Canvas.SetTop(move, 350);
+           canvas.Children.Add(move);
+           Content = canvas;
+       }
+
 
             canvas.Children.Add(move);
 

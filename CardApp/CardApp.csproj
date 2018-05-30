@@ -56,7 +56,6 @@
     </ApplicationDefinition>
 
     <Page Include="HomePage.xaml">
-    <Page Include="CardGUITest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

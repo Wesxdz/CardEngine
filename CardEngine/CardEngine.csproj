@@ -58,8 +58,6 @@
     </Page>
     <Compile Include="Card.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
       <SubType>Code</SubType>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

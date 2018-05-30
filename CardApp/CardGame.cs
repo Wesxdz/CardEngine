@@ -14,7 +14,7 @@ namespace CardApp
         Blackjack
     }
 
-    abstract class Game
+    public abstract class Game
     {
         public GameType type;
         public abstract void Start();

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CardApp {
-    /*public */class GoFishGame : Game {
+    public class GoFishGame : Game {
 
         Deck deck;
         // Players 2 - 4

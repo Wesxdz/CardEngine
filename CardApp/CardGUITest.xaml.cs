@@ -25,7 +25,7 @@ namespace CardApp
         int x = 0, y = 0;
         public CardGUITest()
         {
-            InitializeComponent();
+            //InitializeComponent();
 
             canvas = new Canvas();
             canvas.Background = new SolidColorBrush(Colors.LightCyan);

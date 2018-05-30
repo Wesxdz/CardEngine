@@ -12,7 +12,6 @@
 </NavigationWindow>
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Card Test" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="634,348,0,0" Click="Button_Click"/>
-
+        
     </Grid>
 </Window>

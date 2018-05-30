@@ -24,11 +24,5 @@ namespace CardApp
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window w = new CardGUITest();
-            w.Show();
-        }
     }
 }

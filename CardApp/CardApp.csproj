@@ -84,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BlackJackPage.xaml">
+    </Page>
     <Compile Include="Persistence.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -90,6 +90,9 @@
       <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
     <Compile Include="War.cs" />
+    <Page Include="CardGUITest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     <Page Include="CardVisualizationTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

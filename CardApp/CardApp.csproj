@@ -56,10 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CardImageCreator.cs" />
-    <Compile Include="CardVisualizationTest.xaml.cs">
-      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BlackjackGame.cs" />
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
     </Compile>
@@ -78,8 +75,6 @@
     <Compile Include="WarPage.xaml.cs">
       <DependentUpon>WarPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="CardVisualizationTest.xaml">
-      <Generator>MSBuild:Compile</Generator>
     <Page Include="CardGUITest.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -96,6 +91,10 @@
     <Compile Include="Persistence.Designer.cs">
       <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
+    <Page Include="CardVisualizationTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -12,6 +12,7 @@ namespace CardApp
 {
     public partial class CardImage : UserControl
     {
+        delegate void Selected(Card card);
         public Card Card { get; set; }
         public CardImage()
         {

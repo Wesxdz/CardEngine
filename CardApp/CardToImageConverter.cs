@@ -9,11 +9,11 @@ using System.Windows.Media;
 
 namespace CardApp
 {
-    class CardToImageConverter : IValueConverter
+    public class CardToImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string imageString = "";
+            string imageString = @"Images\Cards\";
             if (targetType != typeof(ImageSource))
             {
                 throw new Exception("Target type needs to be an image");
@@ -23,52 +23,47 @@ namespace CardApp
 
             if (c.FaceUp)
             {
-                imageString = @""; //Card Back
+                imageString += "gray_back"; //Card Back
             }
             else
             {
                 switch (c.Rank)
                 {
                     case 1: //Ace
-                        break;
-                    case 2: //2
-                        break;
-                    case 3: //3
-                        break;
-                    case 4: //4
-                        break;
-                    case 5: //5
-                        break;
-                    case 6: //6
-                        break;
-                    case 7: //7
-                        break;
-                    case 8: //8
-                        break;
-                    case 9: //9
-                        break;
-                    case 10: //10
+                        imageString += "A";
                         break;
                     case 11: //Jack
+                        imageString += "J";
                         break;
                     case 12: //Queen
+                        imageString += "Q";
                         break;
                     case 13: //King
+                        imageString += "K";
+                        break;
+                    default: //Numbers
+                        imageString += c.Rank;
                         break;
                 }
 
                 switch (c.Suit)
                 {
                     case 0: //Heart
+                        imageString += "H";
                         break;
                     case 1: //Diamond
+                        imageString += "D";
                         break;
                     case 2: //Club
+                        imageString += "C";
                         break;
                     case 3: //Spade
+                        imageString += "S";
                         break;
                 }
+
             }
+            imageString += ".png";
 
             return imageString;
         }

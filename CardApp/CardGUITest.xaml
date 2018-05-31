@@ -6,6 +6,17 @@
         mc:Ignorable="d"
         Title="CardGUITest" Height="450" Width="800">
     <Grid>
-
+        <ComboBox x:Name="cardComboBox"
+                      ScrollViewer.CanContentScroll="False"
+                      DockPanel.Dock="Top">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Image Source="{Binding Converter={StaticResource ResourceKey=CardToImage}}"
+                                   Width="150"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Page>

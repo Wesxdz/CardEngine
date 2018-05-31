@@ -13,6 +13,7 @@ namespace CardApp {
         public Deck() {
             
         }
+
         /// <summary>
         /// Creates a standard deck of 52 cards ranging from 1 - 13 with suits of 0 - 3
         /// </summary>
@@ -106,6 +107,10 @@ namespace CardApp {
         /// <param name="index"></param>
         public void AddCard(Card card, int index) {
             cards.Insert(index, card);
+        }
+
+        public bool HasCard(Card card) {
+            return cards.Exists((x) => x.Rank == card.Rank && x.Suit == card.Suit);
         }
 
     }

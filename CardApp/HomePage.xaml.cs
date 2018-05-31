@@ -24,5 +24,34 @@ namespace CardApp
         {
             InitializeComponent();
         }
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            Uri page = new Uri("BlackJackPage.xaml", UriKind.Relative);
+            
+            NavigationService.Navigate(page); 
+        }
+
+        private void btnPlayGoFish_Click(object sender, RoutedEventArgs e)
+        {
+
+            Uri page = new Uri("GoFishPage.xaml", UriKind.Relative);
+            
+            NavigationService.Navigate(page);
+        }
+
+        private void btnPlayWar_Click(object sender, RoutedEventArgs e)
+        {
+            Uri page = new Uri("WarPage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(page);
+        }
+
+        private void btnPlayPoker_Click(object sender, RoutedEventArgs e)
+        {
+            Uri page = new Uri("PokerPage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(page);
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿<Page x:Class="CardApp.BlackJackPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CardApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BlackJackPage">
+
+    <Grid>
+        <Label Content="BLACKJACK!" Margin="356,124,300,180"/>
+        <Button Content="Back" Click="Button_Click" Margin="673,314,25,47"/>
+    </Grid>
+</Page>

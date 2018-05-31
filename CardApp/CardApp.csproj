@@ -56,11 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CardImage.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="GoFishPage.xaml.cs">
+      <DependentUpon>GoFishPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardImage.Designer.cs">
-      <DependentUpon>CardImage.cs</DependentUpon>
+    <Compile Include="BlackJackPage.xaml.cs">
+      <DependentUpon>BlackJackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CardVisualizationTest.xaml.cs">
       <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
@@ -68,6 +68,23 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PokerPage.xaml.cs">
+      <DependentUpon>PokerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="War.cs" />
+    <Compile Include="WarPage.xaml.cs">
+      <DependentUpon>WarPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CardGUITest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GoFishPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BlackJackPage.xaml">
+    </Page>
     <Compile Include="Persistence.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +92,10 @@
       <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
     <Compile Include="War.cs" />
+    <Page Include="CardGUITest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CardVisualizationTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +122,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PokerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -116,9 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="CardImage.resx">
-      <DependentUpon>CardImage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Persistence.resx">
       <DependentUpon>Persistence.cs</DependentUpon>
     </EmbeddedResource>

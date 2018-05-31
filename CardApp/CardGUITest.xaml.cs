@@ -20,7 +20,6 @@ namespace CardApp
     /// </summary>
     public partial class CardGUITest : Window
     {
-
         public CardGUITest()
         {
             InitializeComponent();
@@ -28,11 +27,16 @@ namespace CardApp
             
 
 
-            Card c = new Card(1, 3);
-            
-        }
-        
+            Card CardObject = new Card(1, 3);
+            CardToImageConverter CardToImage = new CardToImageConverter();
+            Binding binding = new Binding
+            {
+                Source = CardObject,
+                Converter = CardToImage
+            };
+            image.SetBinding(Image.SourceProperty, binding);
 
+        }
 
     }
 }

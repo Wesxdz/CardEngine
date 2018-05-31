@@ -24,7 +24,7 @@ namespace CardApp
         public GoFishPage()
         {
             InitializeComponent();
-            instance.pl
+            //instance.pl
             instance.Start();
         }
 
@@ -52,7 +52,7 @@ namespace CardApp
 
         private bool AskPlayerForCard(string name, Card card)
         {
-
+            return false;
         }
     }
 }

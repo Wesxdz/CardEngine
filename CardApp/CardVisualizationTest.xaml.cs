@@ -22,11 +22,10 @@ namespace CardApp
         public CardVisualizationTest()
         {
             InitializeComponent();
-        }
-
-        private void Card_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
+            CardImageCreator creator = new CardImageCreator();
+            Card card = new Card(1, 0);
+            Image cardImage = creator.VisualizeCard(card, Table);
+            cardImage.Margin = new Thickness(400, 0, 0, 0);
         }
     }
 }

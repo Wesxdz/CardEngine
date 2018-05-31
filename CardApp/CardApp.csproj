@@ -56,6 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CardImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CardImage.Designer.cs">
+      <DependentUpon>CardImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CardToImageConverter.cs" />
     <Compile Include="BlackjackGame.cs" />
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
@@ -66,16 +73,12 @@
     <Compile Include="BlackJackPage.xaml.cs">
       <DependentUpon>BlackJackPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardVisualizationTest.xaml.cs">
-      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PokerPage.xaml.cs">
       <DependentUpon>PokerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="War.cs" />
     <Compile Include="WarPage.xaml.cs">
       <DependentUpon>WarPage.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="CardImage.resx">
+      <DependentUpon>CardImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Persistence.resx">
       <DependentUpon>Persistence.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,7 +160,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\10C.png" />

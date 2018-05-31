@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:CardApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <local:CardToImageConverter x:Key="CardToImage"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

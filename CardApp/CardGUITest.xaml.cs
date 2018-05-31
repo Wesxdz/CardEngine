@@ -1,16 +1,16 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows;
-//using System.Windows.Controls;
-//using System.Windows.Data;
-//using System.Windows.Documents;
-//using System.Windows.Input;
-//using System.Windows.Media;
-//using System.Windows.Media.Imaging;
-//using System.Windows.Shapes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace CardApp
 {
@@ -26,7 +26,7 @@ namespace CardApp
         private bool faceUp = false;
         public CardGUITest()
         {
-            //InitializeComponent();
+            InitializeComponent();
            canvas = new Canvas();
            canvas.Background = new SolidColorBrush(Colors.LightCyan);
 
@@ -44,7 +44,7 @@ namespace CardApp
            move = new Button();
            move.Content = "Move";
 
-           move.Click += Button_Click;
+           //move.Click += Button_Click;
 
            Canvas.SetLeft(move, 600);
            Canvas.SetTop(move, 350);
@@ -55,21 +55,21 @@ namespace CardApp
        }
 
 
-            canvas.Children.Add(move);
+        //    canvas.Children.Add(move);
 
 
 
-            flip = new Button();
-            flip.Content = "Flip";
+        //    flip = new Button();
+        //    flip.Content = "Flip";
 
-            flip.Click += Flip_btn_Click;
+        //    flip.Click += Flip_btn_Click;
 
-            Canvas.SetLeft(flip, 630);
-            Canvas.SetTop(flip, 350);
+        //    Canvas.SetLeft(flip, 630);
+        //    Canvas.SetTop(flip, 350);
 
-            canvas.Children.Add(flip);
-            Content = canvas;
-        }
+        //    canvas.Children.Add(flip);
+        //    Content = canvas;
+        //}
 
         private void Move_btn_Click(object sender, RoutedEventArgs e)
         {

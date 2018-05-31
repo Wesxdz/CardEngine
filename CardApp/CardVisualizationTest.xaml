@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:CardApp"
         mc:Ignorable="d"
         Title="CardVisualizationTest" Height="450" Width="800">
-    <Grid>
-        <Image Name="Card" HorizontalAlignment="Left" Height="100" Margin="341,143,0,0" VerticalAlignment="Top" Width="66" Source="Images/Cards/2C.png" MouseDown="Card_MouseDown"/>
+    <Grid Name="Table">
     </Grid>
 </Window>

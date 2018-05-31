@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CardApp
 {
     /// <summary>
-    /// Interaction logic for CardVisualizationTest.xaml
+    /// Interaction logic for PlayerNamingAndSelectionControl.xaml
     /// </summary>
-    public partial class CardVisualizationTest : Window
+    public partial class PlayerNamingAndSelectionControl : UserControl
     {
-        public CardVisualizationTest()
+        public PlayerNamingAndSelectionControl()
         {
             InitializeComponent();
-            CardImageCreator creator = new CardImageCreator();
-            Card card = new Card(1, 0);
-            Image cardImage = creator.VisualizeCard(card, Table);
-            cardImage.Margin = new Thickness(400, 0, 0, 0);
         }
     }
 }

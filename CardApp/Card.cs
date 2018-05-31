@@ -29,10 +29,6 @@ namespace CardApp {
         public int Suit { get; private set; }
 
         public bool IsFlipped { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        private Image front;
-        private Image back;
 
         public Card(int rank, int suite) {
             Rank = rank;

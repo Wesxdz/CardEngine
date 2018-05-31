@@ -21,10 +21,11 @@ namespace CardApp
     public partial class GoFishPage : Page
     {
         GoFishGame instance;
+        //PlayerNamingAndSelectionControl control = new PlayerNamingAndSelectionControl();
         public GoFishPage()
         {
+            //control.IsEnabled = true;
             InitializeComponent();
-            //instance.pl
             instance.Start();
         }
 

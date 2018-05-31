@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,22 +18,21 @@ namespace CardApp
     /// <summary>
     /// Interaction logic for CardGUITest.xaml
     /// </summary>
-    public partial class CardGUITest : Page
+    public partial class CardGUITest : Window
     {
 
         public CardGUITest()
         {
-           InitializeComponent();
+            InitializeComponent();
+
+            
+
 
             Card c = new Card(1, 3);
-
-            ObservableCollection<Card> cards = new ObservableCollection<Card>
-            {
-                new Card(1,3)
-            };
-
-            cardComboBox.ItemSource = cards;
+            
         }
+        
+
 
     }
 }

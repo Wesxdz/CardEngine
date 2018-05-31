@@ -21,7 +21,7 @@ namespace CardApp
 
             Card c = (Card)value;
 
-            if (c.FaceUp)
+            if (c.IsFlipped)
             {
                 imageString += "gray_back"; //Card Back
             }

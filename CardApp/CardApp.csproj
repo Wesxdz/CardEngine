@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CardGUITest.xaml.cs">
+      <DependentUpon>CardGUITest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoFishPage.xaml.cs">
       <DependentUpon>GoFishPage.xaml</DependentUpon>
     </Compile>
@@ -76,8 +79,8 @@
       <DependentUpon>WarPage.xaml</DependentUpon>
     </Compile>
     <Page Include="CardGUITest.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="GoFishPage.xaml">
       <SubType>Designer</SubType>
@@ -91,11 +94,6 @@
     <Compile Include="Persistence.Designer.cs">
       <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
-    <Compile Include="War.cs" />
-    <Page Include="CardGUITest.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CardVisualizationTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,9 +110,6 @@
     <Compile Include="CardGame.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CardGUITest.xaml.cs">
-      <DependentUpon>CardGUITest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="GoFishGame.cs" />

@@ -10,25 +10,53 @@ namespace CardApp {
 
 		public static int PLAYER_AMO = 2;
         public static int STARTING_CARDS = 5;
+        public static int CARDS_RECIEVED_WHEN_EMPTY = 5;
         Deck deck;
 
-        public struct Player {
+        public class Player {
 			public string name;
-            public Deck Hand;
-            public Deck Pairs;
+            public Deck Hand = new Deck();
+            public Deck Pairs = new Deck();
         }
 
         Player[] players;
         int currPlayer;
 
-        //Players 2 - 4
-        // Current Player
+        //IEnumerable<int> placements;
+        bool gameHasEnded = false;
 
-        // Should we have an abstract method to make a turn?
-        // CardGame needs to be public
+        public override void InitializePlayers(int playerAmo, string[] names, bool[] areHuman) {
+            PLAYER_AMO = playerAmo;
+            players = new Player[PLAYER_AMO];
+
+            for (int i = 0; i < players.Length; i++) {
+                players[i] = new Player();
+                players[i].name = names[i];
+                // Computers aren't allowed in Go Fish
+            }
+        }
 
         public override void Exit() {
-            
+            KeyValuePair<int, int>[] pairs = new KeyValuePair<int, int>[PLAYER_AMO];
+
+            for (int i = 0; i < PLAYER_AMO; i++) {
+                KeyValuePair<int, int> pair = new KeyValuePair<int, int>(
+                    i,
+                    players[i].Pairs.cards.Count / 2
+                    );
+                pairs[i] = pair;
+            }
+
+            Array.Sort(pairs, (x, y) => x.Value.CompareTo(y.Value));
+
+            string winText = "Game has ended!\n";
+            for (int i = 0; i < PLAYER_AMO; i++) {
+                var pair = pairs[i];
+                winText += (i + 1) + ".) " + players[pair.Key].name + ": " + pair.Value;
+            }
+            MessageBox.Show(winText);
+
+            gameHasEnded = true;
         }
 
         public override void Load(string path) {
@@ -43,21 +71,23 @@ namespace CardApp {
             deck = Deck.CreateStandardDeck();
             deck.Shuffle();
 
-            // How do we get the amount of Players????
-            players = new Player[PLAYER_AMO];
             currPlayer = 0;
-			
+            gameHasEnded = false;
 
-            for(int i = 0; i < players.Length; i++) {
-                players[i] = new Player();
-            }
-
-			STARTING_CARDS = PLAYER_AMO == 2 ? 7 : 5;
+            STARTING_CARDS = PLAYER_AMO == 2 ? 7 : 5;
             for (int i = 0; i < STARTING_CARDS; i++) {
                 for(int y = 0; y < players.Length; y++) {
                     Card playerCard = deck.GetCard(deck.cards.Count - 1);
                     deck.RemoveCard(deck.cards.Count - 1);
-                    players[y].Hand.AddCard(playerCard);
+
+                    Card possiblPair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
+                    if (possiblPair != null) {
+                        players[y].Hand.RemoveCard(possiblPair);
+                        players[y].Pairs.AddCard(possiblPair);
+                        players[y].Pairs.AddCard(playerCard);
+                    } else {
+                        players[y].Hand.AddCard(playerCard);
+                    }
                 }
             }
 
@@ -65,6 +95,11 @@ namespace CardApp {
         }
 
         public void TakePlayerTurn(int playerTurn, int playerToTake, Card chosenCard) {
+            if (gameHasEnded) {
+                MessageBox.Show("Game has ended!");
+                return;
+            }
+
             // Invliad Player Turn
             if(playerTurn != currPlayer) {
                 MessageBox.Show("The wrong player is taking their turn!");
@@ -85,12 +120,17 @@ namespace CardApp {
 
             // Try to Take Card
             if(TakePlayerCard(players[playerTurn], players[playerToTake], chosenCard)) {
-
+                if(players[playerTurn].Hand.cards.Count == 0) {
+                    for (int i = 0; i < CARDS_RECIEVED_WHEN_EMPTY; i++) {
+                        GrabCardFromDeck(players[playerTurn]);
+                        if (deck.cards.Count == 0) { Exit(); return; }
+                    }
+                }
             } else { // If it didn't work...
                 GrabCardFromDeck(players[playerTurn]);
 
                 // Check for End of Game...
-                if (deck.cards.Count == 0) { }
+                if (deck.cards.Count == 0) { Exit(); return; }
             }
 
             // Increment Player

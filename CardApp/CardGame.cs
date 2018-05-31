@@ -17,6 +17,7 @@ namespace CardApp
     public abstract class Game
     {
         public GameType type;
+        public abstract void InitializePlayers(int playerAmo, string[] names, bool[] areHuman);
         public abstract void Start();
         public abstract void Exit();
         public abstract void Save(string path);

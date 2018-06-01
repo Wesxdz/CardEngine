@@ -56,16 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CardImage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CardImage.Designer.cs">
-      <DependentUpon>CardImage.cs</DependentUpon>
-    </Compile>
     <Compile Include="CardToImageConverter.cs" />
     <Compile Include="BlackjackGame.cs" />
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CardImageCreator.cs" />
+    <Compile Include="CardVisualizationTest.xaml.cs">
+      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="GoFishPage.xaml.cs">
       <DependentUpon>GoFishPage.xaml</DependentUpon>
@@ -144,9 +142,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="CardImage.resx">
-      <DependentUpon>CardImage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Persistence.resx">
       <DependentUpon>Persistence.cs</DependentUpon>
     </EmbeddedResource>

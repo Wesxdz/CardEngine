@@ -6,8 +6,7 @@
         mc:Ignorable="d"
         Title="CardGUITest" Height="450" Width="800">
     <Grid>
-        <Image x:Name="image"  Source="{Binding Converter={StaticResource ResourceKey=CardToImage}}"
-                                   Width="150"/>
+        <Image x:Name="image"/>
                     
     </Grid>
 </Window>

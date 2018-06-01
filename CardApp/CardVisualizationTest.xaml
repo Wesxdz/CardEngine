@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:CardApp"
         mc:Ignorable="d"
         Title="CardVisualizationTest" Height="450" Width="800">
-    <Grid Name="Table">
-    </Grid>
+    <UniformGrid Name="Table">
+    </UniformGrid>
 </Window>

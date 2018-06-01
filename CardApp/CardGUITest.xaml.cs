@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,81 +18,25 @@ namespace CardApp
     /// <summary>
     /// Interaction logic for CardGUITest.xaml
     /// </summary>
-    public partial class CardGUITest : Page
+    public partial class CardGUITest : Window
     {
-        private Canvas canvas;
-        private Rectangle card;
-        private Button move, flip;
-        int x = 0, y = 0;
-        private bool faceUp = false;
         public CardGUITest()
         {
             InitializeComponent();
-           canvas = new Canvas();
-           canvas.Background = new SolidColorBrush(Colors.LightCyan);
 
-           card = new Rectangle();
-           card.Width = 50;
-           card.Height = 75;
-           card.Fill = new SolidColorBrush(Colors.Red);
-
-           Canvas.SetLeft(card, x);
-           Canvas.SetTop(card, y);
-
-           canvas.Children.Add(card);
+            
 
 
-           move = new Button();
-           move.Content = "Move";
-
-           //move.Click += Button_Click;
-
-           Canvas.SetLeft(move, 600);
-           Canvas.SetTop(move, 350);
-            move.Click += Move_btn_Click;
-
-           canvas.Children.Add(move);
-           Content = canvas;
-       }
-
-
-        //    canvas.Children.Add(move);
-
-
-
-        //    flip = new Button();
-        //    flip.Content = "Flip";
-
-        //    flip.Click += Flip_btn_Click;
-
-        //    Canvas.SetLeft(flip, 630);
-        //    Canvas.SetTop(flip, 350);
-
-        //    canvas.Children.Add(flip);
-        //    Content = canvas;
-        //}
-
-        private void Move_btn_Click(object sender, RoutedEventArgs e)
-        {
-            x += 5;
-            y += 5;
-            Canvas.SetLeft(card, x);
-            Canvas.SetTop(card, y);
+            Card CardObject = new Card(1, 3);
+            CardToImageConverter CardToImage = new CardToImageConverter();
+            Binding binding = new Binding
+            {
+                Source = CardObject,
+                Converter = CardToImage
+            };
+            image.SetBinding(Image.SourceProperty, binding);
 
         }
 
-        private void Flip_btn_Click(object sender, RoutedEventArgs e)
-        {
-            if (faceUp)
-            {
-                card.Fill = new SolidColorBrush(Colors.Red);
-                faceUp = false;
-            }
-            else
-            {
-                card.Fill = new SolidColorBrush(Colors.Blue);
-                faceUp = true;
-            }
-        }
     }
 }

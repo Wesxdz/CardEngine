@@ -22,11 +22,14 @@ namespace CardApp
         public Image VisualizeCard(Card card, Panel panel)
         {
             Image cardImage = new Image();
-            BitmapImage src = new BitmapImage(new Uri(@"Images/Cards/3C.png", UriKind.Relative));
-            cardImage.Source = src;
             cardImage.Width = 66;
             cardImage.Height = 100;
             cardImage.DataContext = card;
+            Binding imageBinding = new Binding();
+            imageBinding.Source = cardImage.DataContext;
+            imageBinding.Converter = new CardToImageConverter();
+            //imageBinding.Mode = BindingMode.OneWay;
+            cardImage.SetBinding(Image.SourceProperty, imageBinding);
             cardImage.MouseDown += CardClicked;
             panel.Children.Add(cardImage);
             return cardImage;

@@ -18,7 +18,7 @@ namespace CardApp {
         /// <para></para>
         /// King = 13
         /// <para></para>
-        /// A = 14 / 0
+        /// A = 1
         /// </summary>
         public int Rank { get; private set; }
         /// <summary>

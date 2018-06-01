@@ -80,6 +80,9 @@
     <Compile Include="PokerPage.xaml.cs">
       <DependentUpon>PokerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WarGamePage.xaml.cs">
+      <DependentUpon>WarGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WarPage.xaml.cs">
       <DependentUpon>WarPage.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PokerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,7 +9,7 @@ using System.IO;
 namespace CardApp
 {
 	[Serializable]
-	class WarGame : Game
+	public class WarGame : Game
 	{
 		[Serializable]
 		public class Player
@@ -23,6 +23,7 @@ namespace CardApp
 
 		public Player p1 = new Player();
 		public Player p2 = new Player();
+		bool p1Turn = true;
 
 		/// <summary>
 		/// Moves a card from the players hand to the faceUp position
@@ -33,7 +34,7 @@ namespace CardApp
 			Player p = GetPlayer(playerIndex);
 			Player op = GetPlayer(playerIndex % 2 + 1);
 			if (p == null || op == null) return;
-			if (p.faceUp.Count != 0 && op.faceUp.Count != 0)
+			if (p.faceUp.Count != 0 && p.faceUp.Count == op.faceUp.Count)
 			{
 				if (p.faceUp.Last().Rank < op.faceUp.Last().Rank)
 				{
@@ -79,9 +80,12 @@ namespace CardApp
 					}
 				}
 			}
-
-			p.faceUp.Add(p.cards.Dequeue());
-			if (op.isComputer) op.faceUp.Add(op.cards.Dequeue());
+			if (p.faceUp.Count <= op.faceUp.Count)
+			{
+				p.faceUp.Add(p.cards.Dequeue());
+				if (op.isComputer) op.faceUp.Add(op.cards.Dequeue());
+				p1Turn = !p1Turn;
+			}
 		}
 
 		public string GetAnnounceText()
@@ -113,6 +117,7 @@ namespace CardApp
 		}
 		public override void Start()
 		{
+			p1Turn = true;
 			p1.cards.Clear();
 			p2.cards.Clear();
 			p1.faceUp.Clear();

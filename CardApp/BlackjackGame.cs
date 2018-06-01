@@ -103,7 +103,7 @@ namespace CardApp {
             for (int i = 0; i < PLAYER_AMO; i++) {
                 GrabCardFromDeck(players[i].cards[0]);
 
-                if(players[i].cards[0][0] == players[i].cards[0][1]) {
+                if(players[i].cards[0][0].Rank == players[i].cards[0][1].Rank) {
                     players[i].canSplit = true;
                 }
             }

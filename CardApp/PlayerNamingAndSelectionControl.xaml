@@ -20,16 +20,25 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBox Name="txtbxPlayer1Name" Grid.Row="3" Grid.Column="1" Text="Player 1" VerticalAlignment="Center" Margin="127,10.333,150.333,36.667"/>
-        <TextBox Name="txtbxPlayer2Name" Grid.Row="3" Grid.Column="1" Text="Player 2" VerticalAlignment="Center" Margin="127,37.333,151.333,9.667"/>
-        <TextBox Name="txtbxPlayer3Name" Grid.Row="4" Grid.Column="1" Text="Player 3" VerticalAlignment="Center" Margin="128,0.333,149.333,46.333"/>
-        <TextBox Name="txtbxPlayer4Name" Grid.Row="4" Grid.Column="1" Text="Player 4" VerticalAlignment="Center" Margin="128,23.333,149.333,23.333"/>
-        <TextBox Name="txtbxPlayer5Name" Grid.Row="4" Grid.Column="1" Text="Player 5" VerticalAlignment="Center" Margin="128,50.333,149.333,44.333" Grid.RowSpan="2"/>
+        <TextBox Name="txtbxPlayer1Name" Grid.Row="2" Grid.Column="1" Text="Player 1" VerticalAlignment="Center" Height="23"/>
+        <TextBox Name="txtbxPlayer2Name" Grid.Row="3" Grid.Column="1" Text="Player 2" VerticalAlignment="Center" Height="23"/>
+        <TextBox Name="txtbxPlayer3Name" Grid.Row="4" Grid.Column="1" Text="Player 3" VerticalAlignment="Center" Height="23"/>
+        <TextBox Name="txtbxPlayer4Name" Grid.Row="5" Grid.Column="1" Text="Player 4" VerticalAlignment="Center" Height="23"/>
+        <TextBox Name="txtbxPlayer5Name" Grid.Row="6" Grid.Column="1" Text="Player 5" VerticalAlignment="Center" Height="23"/>
 
-        <Label Grid.Row="1" Grid.Column="1" Content="Number of Players" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <ComboBox Name="CmbbxNumOfPlayers" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button Name="btnBack" Grid.Column="1" Grid.Row="6" Content="Back" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="100" Margin="0,0,120.333,10"/>
-        <Button Name="btnPlay" Grid.Column="1" Grid.Row="6" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="35" Width="100" Margin="128,0,0,10"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="Number of Players" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <ComboBox Name="CmbbxNumOfPlayers" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" SelectionChanged="CmbbxNumOfPlayers_SelectionChanged" Width="40" Height="25">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+        </ComboBox>
+        <Button Name="btnBack" Grid.Column="1" Grid.Row="8" Content="Back" VerticalAlignment="Center" HorizontalAlignment="Right" Height="28" Width="100" Margin="0,5,107.333,5.333" Click="btnBack_Click"/>
+        <Button Name="btnPlay" Grid.Column="1" Grid.Row="8" Content="Start" VerticalAlignment="Center" HorizontalAlignment="Left" Height="28" Width="100" Click="btnPlay_Click" Margin="102,5,0,5.333"/>
     </Grid>
 </UserControl>

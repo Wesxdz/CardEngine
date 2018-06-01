@@ -74,6 +74,9 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlayerNamingAndSelectionControl.xaml.cs">
+      <DependentUpon>PlayerNamingAndSelectionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PokerPage.xaml.cs">
       <DependentUpon>PokerPage.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayerNamingAndSelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PokerPage.xaml">
       <SubType>Designer</SubType>

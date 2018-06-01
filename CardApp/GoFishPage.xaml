@@ -8,7 +8,7 @@
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="GoFishPage">
 
-    <Grid Background="LightSlateGray"> 
+    <Grid Background="LightSlateGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
@@ -30,7 +30,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Button Name="btnGFBack" Content="Back" Click="btnGFBack_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Margin="31.333,10,30,10" Width="94" />
-            <Label Name="lblDeckGoesHere" Content="Deck Goes Here!" Grid.Column="0" Grid.Row="1" Margin="317,95,193.667,10"/>
+            <Label Name="lblDeckGoesHere" Content="Deck Goes Here!" Grid.Column="0" Grid.Row="1" Margin="317,56,147.667,0"/>
             <Label Name="lblHelperText" Content="Helper Text!" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"/>
         </Grid>
 
@@ -38,5 +38,6 @@
         <Button Name="btnAskLeftPlayer" Grid.Row="1" Grid.Column="0" Content="Ask this Player" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnAskLeftPlayer_Click"/>
         <Button Name="btnAskRightPlayer" Grid.Row="1" Grid.Column="2" Content="Ask this Player" VerticalAlignment="Center" HorizontalAlignment="left" Click="btnAskRightPlayer_Click"/>
         <Button Name="btnAskTopPlayer" Grid.Row="0" Grid.Column="1" Content="Ask this Player" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnAskTopPlayer_Click"/>
+        <local:PlayerNamingAndSelectionControl x:Name="contol" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#DDDDDDDD" Loaded="PlayerNamingAndSelectionControl_Loaded"/>
     </Grid>
 </Page>

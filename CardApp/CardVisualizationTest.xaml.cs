@@ -29,17 +29,10 @@ namespace CardApp
             //cardImage.Margin = new Thickness(400, 0, 0, 0);
 
             Deck deck = Deck.CreateStandardDeck();
-            CardImageCreator creator = new CardImageCreator();
             foreach (Card card in deck.cards)
             {
-                Image image = creator.VisualizeCard(card, Table);
-                creator.OnCardSelect += Flip;
+                Image image = CardImageCreator.VisualizeCard(card, Table);
             }
-        }
-
-        public void Flip(Image image, Card card)
-        {
-            card.IsFlipped = !card.IsFlipped;
         }
     }
 }

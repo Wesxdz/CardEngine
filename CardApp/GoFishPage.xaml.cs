@@ -20,13 +20,15 @@ namespace CardApp
     /// </summary>
     public partial class GoFishPage : Page
     {
-        GoFishGame instance;
+        GoFishGame game = new GoFishGame();
         //PlayerNamingAndSelectionControl control = new PlayerNamingAndSelectionControl();
         public GoFishPage()
         {
             //control.IsEnabled = true;
             InitializeComponent();
-            instance.Start();
+            game.page = this;
+            game.InitializePlayers(2, new string[] { "Wesley", "Not Josh Key" }, new bool[] { true, true });
+            game.Start();
         }
 
         private void btnGFBack_Click(object sender, RoutedEventArgs e)

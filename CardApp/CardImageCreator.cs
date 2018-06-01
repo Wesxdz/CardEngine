@@ -19,7 +19,7 @@ namespace CardApp
         public delegate void ProcessCardClick(Image image, Card card);
         public ProcessCardClick OnCardSelect;
 
-        public Image VisualizeCard(Card card, Panel panel)
+        static public Image VisualizeCard(Card card, Panel panel)
         {
             Image cardImage = new Image();
             cardImage.Width = 66;
@@ -30,7 +30,7 @@ namespace CardApp
             imageBinding.Converter = new CardToImageConverter();
             //imageBinding.Mode = BindingMode.OneWay;
             cardImage.SetBinding(Image.SourceProperty, imageBinding);
-            cardImage.MouseDown += CardClicked;
+            //cardImage.MouseDown += CardClicked;
             panel.Children.Add(cardImage);
             return cardImage;
         }

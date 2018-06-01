@@ -19,9 +19,9 @@ namespace CardApp
                 throw new Exception("Target type needs to be an image");
             }
 
-            Card c = (Card)value;
+            Card c = (Card)parameter;
 
-            if (c.IsFlipped)
+            if ((bool)value)
             {
                 imageString += "gray_back"; //Card Back
             }

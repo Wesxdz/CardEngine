@@ -20,23 +20,31 @@ namespace CardApp
     /// </summary>
     public partial class CardGUITest : Window
     {
+        Card CardObject;
+        Binding binding;
         public CardGUITest()
         {
             InitializeComponent();
-
             
 
-
-            Card CardObject = new Card(1, 3);
+            CardObject = new Card(1, 3);
             CardToImageConverter CardToImage = new CardToImageConverter();
-            Binding binding = new Binding
+            binding = new Binding
             {
                 Source = CardObject,
-                Converter = CardToImage
+                Path = new PropertyPath("IsFlipped"),
+                Converter = CardToImage,
+                ConverterParameter = CardObject,
             };
             image.SetBinding(Image.SourceProperty, binding);
+            
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CardObject.IsFlipped = !CardObject.IsFlipped;
+            image.SetBinding(Image.SourceProperty, binding);
+        }
     }
 }

@@ -28,8 +28,18 @@ namespace CardApp
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Uri page = new Uri("HomePage.xaml", UriKind.Relative);
-
             NavigationService.Navigate(page);
         }
-    }
+
+		private void btnStart_Click(object sender, RoutedEventArgs e)
+		{
+			Uri page = new Uri("WarGamePage.xaml", UriKind.Relative);
+			NavigationService.Navigate(page);
+		}
+
+		private void btnLoad_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

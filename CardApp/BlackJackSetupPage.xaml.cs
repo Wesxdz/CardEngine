@@ -28,9 +28,29 @@ namespace CardApp {
         }
 
         private void submitBtn_Click(object sender, RoutedEventArgs e) {
-            Uri page = new Uri("BlackJackPage.xaml", UriKind.Relative);
+            int playerAmo = 1;
+            if(player2Text.Visibility == Visibility.Visible) { playerAmo++; }
+            else if(player3Text.Visibility == Visibility.Visible) { playerAmo++; }
+            else if (player4Text.Visibility == Visibility.Visible) { playerAmo++; }
+            else if (player5Text.Visibility == Visibility.Visible) { playerAmo++; }  
 
-            NavigationService.Navigate(page);
+            BlackJackPage blackJackPage = new BlackJackPage();
+            blackJackPage.playerAmo = playerAmo;
+            blackJackPage.playerNames = new string[playerAmo];
+
+            blackJackPage.playerNames[0] = player1Text.Text;
+            if(player2Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[1] = player2Text.Text;
+            } else if(player3Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[2] = player3Text.Text;
+            } else if (player4Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[3] = player4Text.Text;
+            } else if (player5Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[4] = player5Text.Text;
+            }
+            //Uri page = new Uri("BlackJackPage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(blackJackPage);
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e) {
@@ -42,17 +62,21 @@ namespace CardApp {
         private void addPlayerBtn_Click(object sender, RoutedEventArgs e) {
             if(playerCount < 5) {
                 switch (playerCount) {
+                    case 1:
+                        player2Label.Visibility = Visibility.Visible;
+                        player2Text.Visibility = Visibility.Visible;
+                        break;
                     case 2:
-                        player3Label.IsEnabled = true;
-                        player3Text.IsEnabled = true;
+                        player3Label.Visibility = Visibility.Visible;
+                        player3Text.Visibility = Visibility.Visible;
                         break;
                     case 3:
-                        player4Label.IsEnabled = true;
-                        player4Text.IsEnabled = true;
+                        player4Label.Visibility = Visibility.Visible;
+                        player4Text.Visibility = Visibility.Visible;
                         break;
                     case 4:
-                        player5Label.IsEnabled = true;
-                        player5Text.IsEnabled = true;
+                        player5Label.Visibility = Visibility.Visible;
+                        player5Text.Visibility = Visibility.Visible;
                         break;
                 }
                 playerCount++;
@@ -61,19 +85,23 @@ namespace CardApp {
             }
         }
         private void removePlayerBtn_Click(object sender, RoutedEventArgs e) {
-            if (playerCount > 2) {
+            if (playerCount > 1) {
                 switch (playerCount) {
+                    case 2:
+                        player2Label.Visibility = Visibility.Hidden;
+                        player2Text.Visibility = Visibility.Hidden;
+                        break;
                     case 3:
-                        player3Label.IsEnabled = false;
-                        player3Text.IsEnabled = false;
+                        player3Label.Visibility = Visibility.Hidden;
+                        player3Text.Visibility = Visibility.Hidden;
                         break;
                     case 4:
-                        player4Label.IsEnabled = false;
-                        player4Text.IsEnabled = false;
+                        player4Label.Visibility = Visibility.Hidden;
+                        player4Text.Visibility = Visibility.Hidden;
                         break;
                     case 5:
-                        player5Label.IsEnabled = false;
-                        player5Text.IsEnabled = false;
+                        player5Label.Visibility = Visibility.Hidden;
+                        player5Text.Visibility = Visibility.Hidden;
                         break;
                 }
                 playerCount--;

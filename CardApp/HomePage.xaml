@@ -27,7 +27,7 @@
         <Button Name="btnPlay" Grid.Row="1" Grid.Column="1" Content="Play Black Jack"  Click="btnPlay_Click" Height="25" Width="150"/>
         <Button Name="btnPlayGoFish" Grid.Row="2" Grid.Column="1" Content="Play Go Fish"  Click="btnPlayGoFish_Click" Height="25" Width="150" />
         <Button Name="btnPlayWar" Grid.Row="3" Grid.Column="1" Content="Play War" Click="btnPlayWar_Click" Height="25" Width="150" />
-        <Button Name="btnPlayPoker" Grid.Row="4" Grid.Column="1" Content="Play Poker" Click="btnPlayPoker_Click" Height="25" Width="150" />
+        <Button Name="btnPlayPoker" Grid.Row="4" Grid.Column="1" Content="Play Poker" Click="btnPlayPoker_Click" Height="25" Width="150" IsEnabled="False" />
         <Button Name="btnQuit" Grid.Row="5" Grid.Column="1" Content="Quit" Height="25" Width="150"/>
     </Grid>
 </Page>

@@ -59,15 +59,8 @@
     <Compile Include="BlackJackSetupPage.xaml.cs">
       <DependentUpon>BlackJackSetupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardToImageConverter.cs" />
     <Compile Include="BlackjackGame.cs" />
-    <Compile Include="CardGUITest.xaml.cs">
-      <DependentUpon>CardGUITest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CardImageCreator.cs" />
-    <Compile Include="CardVisualizationTest.xaml.cs">
-      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GoFishPage.xaml.cs">
       <DependentUpon>GoFishPage.xaml</DependentUpon>
     </Compile>
@@ -93,10 +86,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardGUITest.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
     <Page Include="GoFishPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,10 +98,6 @@
     <Compile Include="Persistence.Designer.cs">
       <DependentUpon>Persistence.cs</DependentUpon>
     </Compile>
-    <Page Include="CardVisualizationTest.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="WarGame.cs" />
     <Page Include="GoFishSetupPage.xaml">
       <SubType>Designer</SubType>

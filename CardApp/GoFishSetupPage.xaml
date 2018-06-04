@@ -22,7 +22,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="244,30,243.333,67.667"/>
+        <Label Name="lblMoreText" Content="Please name your Players" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="161,67,160.333,30.667" Height="37" Width="250" />
 
         <TextBox Name="tbxPlayer1Name" Grid.Row="1" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player1"/>
         <TextBox Name="tbxPlayer2Name" Grid.Row="2" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player2"/>

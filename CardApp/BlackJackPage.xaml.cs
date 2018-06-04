@@ -20,9 +20,25 @@ namespace CardApp
     /// </summary>
     public partial class BlackJackPage : Page
     {
+
+        public int playerAmo;
+        public string[] playerNames;
+        BlackjackGame game;
+
         public BlackJackPage()
         {
             InitializeComponent();
+
+            game = new BlackjackGame();
+            game.InitializePlayers(playerAmo, playerNames, null);
+            game.Start();
+
+            // Do antes
+            // Start Round
+
+            // Display Cards
+            // Buttons
+            // Hit Btn
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

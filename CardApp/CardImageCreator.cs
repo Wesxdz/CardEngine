@@ -25,23 +25,59 @@ namespace CardApp
             cardImage.Width = 66;
             cardImage.Height = 100;
             cardImage.DataContext = card;
-            Binding imageBinding = new Binding();
-            imageBinding.Source = cardImage.DataContext;
-            imageBinding.Converter = new CardToImageConverter();
-            //imageBinding.Mode = BindingMode.OneWay;
-            cardImage.SetBinding(Image.SourceProperty, imageBinding);
-            //cardImage.MouseDown += CardClicked;
+            cardImage.Source = GetImage(card);
+            card.image = cardImage;
             panel.Children.Add(cardImage);
             return cardImage;
         }
 
-        private void CardClicked(object sender, MouseButtonEventArgs e)
+        static public BitmapImage GetImage(Card card)
         {
-            Card card = (((Image)sender).DataContext as Card);
-            if (OnCardSelect != null)
+            string imageString = @"Images\Cards\";
+            if (card.IsFlipped)
             {
-                OnCardSelect((Image)sender, card);
+                imageString += "gray_back"; //Card Back
             }
+            else
+            {
+                switch (card.Rank)
+                {
+                    case 1: //Ace
+                        imageString += "A";
+                        break;
+                    case 11: //Jack
+                        imageString += "J";
+                        break;
+                    case 12: //Queen
+                        imageString += "Q";
+                        break;
+                    case 13: //King
+                        imageString += "K";
+                        break;
+                    default: //Numbers
+                        imageString += card.Rank;
+                        break;
+                }
+
+                switch (card.Suit)
+                {
+                    case 0: //Heart
+                        imageString += "H";
+                        break;
+                    case 1: //Diamond
+                        imageString += "D";
+                        break;
+                    case 2: //Club
+                        imageString += "C";
+                        break;
+                    case 3: //Spade
+                        imageString += "S";
+                        break;
+                }
+
+            }
+            imageString += ".png";
+            return new BitmapImage(new Uri(imageString));
         }
     }
 }

@@ -26,6 +26,7 @@ namespace CardApp
             InitializeComponent();
             string[] names = new string[] { "Fred", "George" };
             bool[] humans = new bool[] { true, true };
+            instance.page = this;
             instance.InitializePlayers(2, names, humans);
             instance.Start();
         }
@@ -35,31 +36,6 @@ namespace CardApp
             Uri page = new Uri("HomePage.xaml", UriKind.Relative);
 
             NavigationService.Navigate(page);
-        }
-
-        private void btnAskRightPlayer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAskLeftPlayer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAskTopPlayer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private bool AskPlayerForCard(string name, Card card)
-        {
-            return false;
-        }
-
-        private void PlayerNamingAndSelectionControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -20,15 +20,14 @@ namespace CardApp
     /// </summary>
     public partial class GoFishPage : Page
     {
-        GoFishGame game = new GoFishGame();
-        //PlayerNamingAndSelectionControl control = new PlayerNamingAndSelectionControl();
+        GoFishGame instance = new GoFishGame();
         public GoFishPage()
         {
-            //control.IsEnabled = true;
             InitializeComponent();
-            game.page = this;
-            game.InitializePlayers(2, new string[] { "Wesley", "Not Josh Key" }, new bool[] { true, true });
-            game.Start();
+            string[] names = new string[] { "Fred", "George" };
+            bool[] humans = new bool[] { true, true };
+            instance.InitializePlayers(2, names, humans);
+            instance.Start();
         }
 
         private void btnGFBack_Click(object sender, RoutedEventArgs e)
@@ -56,6 +55,11 @@ namespace CardApp
         private bool AskPlayerForCard(string name, Card card)
         {
             return false;
+        }
+
+        private void PlayerNamingAndSelectionControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

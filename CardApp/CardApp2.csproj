@@ -56,20 +56,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CardToImageConverter.cs" />
     <Compile Include="BlackjackGame.cs" />
     <Compile Include="CardGUITest.xaml.cs">
       <DependentUpon>CardGUITest.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CardImageCreator.cs" />
-    <Compile Include="CardVisualizationTest.xaml.cs">
-      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="GoFishPage.xaml.cs">
       <DependentUpon>GoFishPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="BlackJackPage.xaml.cs">
       <DependentUpon>BlackJackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CardVisualizationTest.xaml.cs">
+      <DependentUpon>CardVisualizationTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -80,9 +78,7 @@
     <Compile Include="PokerPage.xaml.cs">
       <DependentUpon>PokerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WarGamePage.xaml.cs">
-      <DependentUpon>WarGamePage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="War.cs" />
     <Compile Include="WarPage.xaml.cs">
       <DependentUpon>WarPage.xaml</DependentUpon>
     </Compile>
@@ -106,7 +102,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="WarGame.cs" />
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,14 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlayerNamingAndSelectionControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PokerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WarGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,9 +161,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\10C.png" />

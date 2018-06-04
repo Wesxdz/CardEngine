@@ -178,6 +178,7 @@ namespace CardApp {
         /// <param name="player"></param>
         public void GrabCardFromDeck(Player player) {
             Card c = deck.GetCard(deck.cards.Count-1);
+            deck.RemoveCard(deck.cards.Count - 1);
             player.Hand.AddCard(c);
             CheckForPairs(player, c);
         }

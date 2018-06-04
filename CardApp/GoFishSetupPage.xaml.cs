@@ -20,6 +20,8 @@ namespace CardApp
     /// </summary>
     public partial class GoFishSetupPage : Page
     {
+
+        int playerCount = 2;
         public GoFishSetupPage()
         {
             InitializeComponent();
@@ -47,6 +49,47 @@ namespace CardApp
             Uri page = new Uri("HomePage.xaml", UriKind.Relative);
 
             NavigationService.Navigate(page);
+        }
+
+        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+           
+            if (playerCount < 4)
+            {
+                playerCount++;
+                switch (playerCount)
+                {
+                    case 3:
+                        tbxPlayer3Name.IsEnabled = true;
+                        tbxPlayer3Name.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                        tbxPlayer4Name.IsEnabled = true;
+                        tbxPlayer4Name.Visibility = Visibility.Visible;
+                        break;
+                }
+            }
+
+        }
+
+        private void btnRemovePlayer_Click(object sender, RoutedEventArgs e)
+        {
+            if (playerCount > 2)
+            {
+                switch (playerCount)
+                {
+                    case 3:
+                        tbxPlayer3Name.IsEnabled = false;
+                        tbxPlayer3Name.Visibility = Visibility.Hidden;
+                        break;
+                    case 4:
+                        tbxPlayer4Name.IsEnabled = false;
+                        tbxPlayer4Name.Visibility = Visibility.Hidden;
+                        break;
+
+                }
+                playerCount--;
+            }
         }
     }
 }

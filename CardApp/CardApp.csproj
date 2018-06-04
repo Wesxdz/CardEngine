@@ -74,6 +74,9 @@
     <Compile Include="BlackJackPage.xaml.cs">
       <DependentUpon>BlackJackPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GoFishSetupPage.xaml.cs">
+      <DependentUpon>GoFishSetupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="WarGame.cs" />
+    <Page Include="GoFishSetupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

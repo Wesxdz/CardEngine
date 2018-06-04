@@ -25,13 +25,13 @@ namespace CardApp
             card.image = cardImage;
             cardImage.Width = 66;
             cardImage.Height = 100;
-            cardImage.Source = GetImage(card);
+            cardImage.Source = Convert(card);
             cardImage.DataContext = card;
             panel.Children.Add(cardImage);
             return cardImage;
         }
 
-        static public ImageSource GetImage(Card card)
+        static public ImageSource Convert(Card card)
         {
             string imageString = @"Images\Cards\";
             if (card.IsFlipped)

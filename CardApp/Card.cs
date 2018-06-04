@@ -37,7 +37,7 @@ namespace CardApp {
                 isFlipped = value;
                 if (image != null)
                 {
-                    image.Source = CardImageCreator.GetImage(this);
+                    image.Source = CardImageCreator.Convert(this);
                 }
             }
         }

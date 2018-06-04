@@ -8,7 +8,42 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BlackJackSetupPage">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <Label Content="BlackJack"  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="36" />
+        <Label Content="Add and Remove "  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="player1Label" Content="Player 1: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="player2Label" Content="Player 2: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+            <Label x:Name="player3Label" Visibility="Hidden" Content="Player 3: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+            <Label x:Name="player4Label" Visibility="Hidden" Content="Player 4: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+            <Label x:Name="player5Label" Visibility="Hidden" Content="Player 5: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
+
+            <TextBox x:Name="player1Text" Text="Player 1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="0"/>
+            <TextBox x:Name="player2Text" Text="Player 2" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="1"/>
+            <TextBox x:Name="player3Text" Text="Player 3" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="2"/>
+            <TextBox x:Name="player4Text" Text="Player 4" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="3"/>
+            <TextBox x:Name="player5Text" Text="Player 5" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="4"/>
+
+            <Button x:Name="addPlayerBtn" Content="Add Player" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="addPlayerBtn_Click"/>
+            <Button x:Name="removePlayerBtn" Content="Remove Player" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="removePlayerBtn_Click"/>
+
+            <Button x:Name="submitBtn" Content="Play" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="submitBtn_Click"/>
+            <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="backBtn_Click"/>
+
+        </Grid>
+    </StackPanel>
+    
 </Page>

@@ -20,14 +20,12 @@ namespace CardApp
     /// </summary>
     public partial class GoFishPage : Page
     {
-        GoFishGame instance = new GoFishGame();
-        public GoFishPage()
+        public GoFishGame instance = new GoFishGame();
+        public GoFishPage(string[] names, bool[] isHumans)
         {
             InitializeComponent();
-            string[] names = new string[] { "Fred", "George" };
-            bool[] humans = new bool[] { true, true };
             instance.page = this;
-            instance.InitializePlayers(2, names, humans);
+            instance.InitializePlayers(names.Length, names, isHumans);
             instance.Start();
         }
 

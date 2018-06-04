@@ -22,6 +22,15 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20"/>
+        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="244,30,243.333,67.667"/>
+        <Label Name="lblMoreText" Content="Please name your Players" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="161,67,160.333,30.667" Height="37" Width="250" />
+
+        <TextBox Name="tbxPlayer1Name" Grid.Row="1" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player1"/>
+        <TextBox Name="tbxPlayer2Name" Grid.Row="2" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player2"/>
+        <TextBox Name="tbxPlayer3Name" Grid.Row="3" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player3"/>
+        <TextBox Name="tbxPlayer4Name" Grid.Row="4" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player4"/>
+
+        <Button Name="btnBack" Content="Back" Grid.Column="1" Grid.Row="5" Height="50" Width="150" HorizontalAlignment="Right" Margin="0,45.333,44.333,40" Click="btnBack_Click"/>
+        <Button Name="btnPlay" Content="Play" Grid.Column="1" Grid.Row="5" Height="50" Width="150" HorizontalAlignment="Left" Margin="72,45.333,0,40" Click="btnPlay_Click"/>
     </Grid>
 </Page>

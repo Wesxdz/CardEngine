@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CardApp"
         mc:Ignorable="d"
-        Title="Card Games" Height="450" Width="800"
-                  Source="HomePage.xaml"
+        Title="Card Games" Height="500" Width="900"
+                  Source="HomePage.xaml" MinWidth="900" MinHeight="500"
                   >
 </NavigationWindow>

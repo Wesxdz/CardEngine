@@ -147,11 +147,12 @@ namespace CardApp {
 
                 // Check for End of Game...
                 if (deck.cards.Count == 0) { Exit(); return; }
-            }
 
-            // Increment Player
-            if (++currPlayer >= players.Length) {
-                currPlayer = 0;
+
+                // Increment Player
+                if (++currPlayer >= players.Length) {
+                    currPlayer = 0;
+                }
             }
         }
 

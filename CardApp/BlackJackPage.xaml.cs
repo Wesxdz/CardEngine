@@ -39,6 +39,8 @@ namespace CardApp
             // Display Cards
             // Buttons
             // Hit Btn
+
+            var player = game.GetCurrentPlayer();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

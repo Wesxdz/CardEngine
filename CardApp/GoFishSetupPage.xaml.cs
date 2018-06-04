@@ -24,5 +24,19 @@ namespace CardApp
         {
             InitializeComponent();
         }
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            Uri page = new Uri("GoFishPage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(page);
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Uri page = new Uri("HomePage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(page);
+        }
     }
 }

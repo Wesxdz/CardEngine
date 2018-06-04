@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace CardApp {
+    [Serializable]
     public class GoFishGame : Game {
 
         public GoFishPage page;
@@ -16,6 +19,7 @@ namespace CardApp {
         public static int CARDS_RECIEVED_WHEN_EMPTY = 5;
         Deck deck;
 
+        [Serializable]
         public class Player {
 			public string name;
             public Deck Hand = new Deck();
@@ -62,12 +66,21 @@ namespace CardApp {
             gameHasEnded = true;
         }
 
-        public override void Load(string path) {
-            throw new NotImplementedException();
+        public override void Load(string path)
+        {
+            BinaryFormatter format = new BinaryFormatter();
+            GoFishGame state = (GoFishGame)format.Deserialize(File.Open(path, FileMode.Open));
+            page = state.page;
+            deck = state.deck;
+            players = state.players;
+            currPlayer = state.currPlayer;
+            gameHasEnded = state.gameHasEnded;
         }
 
-        public override void Save(string path) {
-            throw new NotImplementedException();
+        public override void Save(string path)
+        {
+            BinaryFormatter format = new BinaryFormatter();
+            format.Serialize(File.Open(Path.GetFullPath(path), FileMode.OpenOrCreate), this);
         }
 
         public override void Start() {

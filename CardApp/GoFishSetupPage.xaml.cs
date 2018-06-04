@@ -27,9 +27,19 @@ namespace CardApp
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            Uri page = new Uri("GoFishPage.xaml", UriKind.Relative);
+            List<string> names = new List<string>();
+            if (tbxPlayer1Name.IsEnabled)
+                names.Add(tbxPlayer1Name.Text);
+            if (tbxPlayer2Name.IsEnabled)
+                names.Add(tbxPlayer2Name.Text);
+            if (tbxPlayer3Name.IsEnabled)
+                names.Add(tbxPlayer3Name.Text);
+            if (tbxPlayer4Name.IsEnabled)
+                names.Add(tbxPlayer4Name.Text);
+            GoFishPage goFishPage = new GoFishPage(names.ToArray(), null);
 
-            NavigationService.Navigate(page);
+
+            NavigationService.Navigate(goFishPage);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

@@ -53,5 +53,10 @@ namespace CardApp
 
             NavigationService.Navigate(page);
         }
+
+        private void btnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

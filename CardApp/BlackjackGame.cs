@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CardApp {
-    class BlackjackGame : Game {
+namespace CardApp
+{
 
-        public class Player {
+    [Serializable]
+    class BlackjackGame : Game
+    {
+
+        [Serializable]
+        public class Player
+        {
             public string name;
             public List<List<Card>> cards = new List<List<Card>>();
             public int bank = 20;
@@ -39,9 +47,10 @@ namespace CardApp {
         // Each Round, We need to get each player's Ante
         // Then we process their turn...
 
-            // What is splitting???
+        // What is splitting???
 
-        public override void Start() {
+        public override void Start()
+        {
             deck = Deck.CreateStandardDeck();
             deck.Shuffle();
 
@@ -50,10 +59,12 @@ namespace CardApp {
             type = GameType.Blackjack;
         }
 
-        public override void InitializePlayers(int playerAmo, string[] names, bool[] areHuman) {
+        public override void InitializePlayers(int playerAmo, string[] names, bool[] areHuman)
+        {
             PLAYER_AMO = playerAmo;
 
-            for (int i = 0; i < playerAmo; i++) {
+            for (int i = 0; i < playerAmo; i++)
+            {
                 Player p = new Player();
                 p.name = names[i];
                 players.Add(p);
@@ -61,14 +72,18 @@ namespace CardApp {
             }
         }
 
-        public override void Exit() {
+        public override void Exit()
+        {
             // Determine Winner based on amount they have...
         }
 
-        public void GetAnte(int[] ante) {
-            for (int i = 0; i < PLAYER_AMO; i++) {
+        public void GetAnte(int[] ante)
+        {
+            for (int i = 0; i < PLAYER_AMO; i++)
+            {
                 int bet = ante[i];
-                if (!IsValidBet(bet)) {
+                if (!IsValidBet(bet))
+                {
                     MessageBox.Show("Ante must be $1, $5, or $10");
                 }
                 players[i].currBet = bet;
@@ -77,13 +92,16 @@ namespace CardApp {
 
             StartRound();
         }
-        public bool IsValidBet(int bet) {
+        public bool IsValidBet(int bet)
+        {
             return bet == 1 || bet == 5 || bet == 10;
         }
 
-        public void StartRound() {
+        public void StartRound()
+        {
             // 1st card - Face Down to others...
-            for (int i = 0; i < PLAYER_AMO; i++) {
+            for (int i = 0; i < PLAYER_AMO; i++)
+            {
                 players[i].cards.Clear();
                 players[i].cards.Add(new List<Card>());
                 GrabCardFromDeck(players[i].cards[0]);
@@ -100,10 +118,12 @@ namespace CardApp {
 
 
             // 2nd card - Face up to everyone
-            for (int i = 0; i < PLAYER_AMO; i++) {
+            for (int i = 0; i < PLAYER_AMO; i++)
+            {
                 GrabCardFromDeck(players[i].cards[0]);
 
-                if(players[i].cards[0][0].Rank == players[i].cards[0][1].Rank) {
+                if (players[i].cards[0][0].Rank == players[i].cards[0][1].Rank)
+                {
                     players[i].canSplit = true;
                 }
             }
@@ -117,42 +137,58 @@ namespace CardApp {
             currPlayer = 0;
             roundOver = false;
         }
-        public void EndRound() {
+        public void EndRound()
+        {
             int houseSum = GetSum(houseCards);
             bool houseIsValid = houseSum <= 21;
 
-            for (int i = 0; i < PLAYER_AMO; i++) {
+            for (int i = 0; i < PLAYER_AMO; i++)
+            {
                 Player p = players[i];
-                for(int y = 0; y < p.cards.Count; y++) {
+                for (int y = 0; y < p.cards.Count; y++)
+                {
                     var hand = p.cards[y];
 
                     int playerSum = GetSum(hand);
                     bool playerIsValid = playerSum <= 21;
 
-                    if (playerIsValid && players[i].cards.Count >= 5) {
+                    if (playerIsValid && players[i].cards.Count >= 5)
+                    {
                         // 5 Card Charlie
                         players[i].bank += players[i].currBet * CHARLIE_MULTI;
-                    } else if (!playerIsValid && !houseIsValid) {
+                    }
+                    else if (!playerIsValid && !houseIsValid)
+                    {
                         // Draw
                         players[i].bank += players[i].currBet * DRAW_MULTI;
-                    } else if (!houseIsValid && playerIsValid) {
+                    }
+                    else if (!houseIsValid && playerIsValid)
+                    {
                         // Won 
                         players[i].bank += players[i].currBet * WIN_MULTI;
-                    } else {
-                        if (playerSum == houseSum) {
+                    }
+                    else
+                    {
+                        if (playerSum == houseSum)
+                        {
                             // Draw
                             players[i].bank += players[i].currBet * DRAW_MULTI;
-                        } else if (playerSum == 21) {
+                        }
+                        else if (playerSum == 21)
+                        {
                             // Black Jack
                             players[i].bank += players[i].currBet * BLACKJACK_MULTI;
-                        } else if (playerSum > houseSum) {
+                        }
+                        else if (playerSum > houseSum)
+                        {
                             // Win
                             players[i].bank += players[i].currBet * WIN_MULTI;
                         }
                     }
-                }         
+                }
 
-                if(players[i].bank <= DROPOUT) {
+                if (players[i].bank <= DROPOUT)
+                {
                     players.RemoveAt(i);
                     i--;
                 }
@@ -161,14 +197,17 @@ namespace CardApp {
             roundOver = true;
         }
 
-        public void Split(int player) {
-            if (player != currPlayer) {
+        public void Split(int player)
+        {
+            if (player != currPlayer)
+            {
                 MessageBox.Show("Invalid Player spliting!");
                 return;
             }
 
             Player p = players[player];
-            if (!p.canSplit) {
+            if (!p.canSplit)
+            {
                 MessageBox.Show("Player can not split!");
                 return;
             }
@@ -187,12 +226,15 @@ namespace CardApp {
             p.bank -= p.currBet;
         }
 
-        public void TakeTurn(int player, bool[] isHitting) {
-            if(player != currPlayer) {
+        public void TakeTurn(int player, bool[] isHitting)
+        {
+            if (player != currPlayer)
+            {
                 MessageBox.Show("Invalid Player playing!");
                 return;
             }
-            if (roundOver) {
+            if (roundOver)
+            {
                 MessageBox.Show("Round is over! Ante up to begin!");
                 return;
             }
@@ -201,46 +243,61 @@ namespace CardApp {
 
             p.canSplit = false;
 
-            for(int i = 0; i < p.cards.Count; i++) {
+            for (int i = 0; i < p.cards.Count; i++)
+            {
                 var hand = p.cards[i];
 
-                if (isHitting[i]) {
+                if (isHitting[i])
+                {
                     GrabCardFromDeck(p.cards[i]);
 
                     var possibleSum = GetSum(p.cards[i]);
-                    if (possibleSum > 21) {
+                    if (possibleSum > 21)
+                    {
                         players[player].isHitting[i] = false;
 
-                    } else if (players[player].cards.Count >= 5) { // 5 card charlie
+                    }
+                    else if (players[player].cards.Count >= 5)
+                    { // 5 card charlie
                         players[player].isHitting[i] = false;
                     }
-                } else {
+                }
+                else
+                {
                     players[player].isHitting[i] = false;
                 }
             }
 
             // Find Next Player who is Hitting...
-            if(players.Exists((x) => x.isHitting.Exists((y) => y))) {
-                while (true) {
+            if (players.Exists((x) => x.isHitting.Exists((y) => y)))
+            {
+                while (true)
+                {
                     currPlayer++;
-                    if (currPlayer >= players.Count) {
+                    if (currPlayer >= players.Count)
+                    {
                         TakeHouseTurn();
                         currPlayer = 0;
                     }
 
-                    if (players[currPlayer].isHitting.Exists((y) => y)) {
+                    if (players[currPlayer].isHitting.Exists((y) => y))
+                    {
                         break;
                     }
                 }
-            } else {
+            }
+            else
+            {
                 // If no one is hitting, End Round...
                 TakeHouseTurn();
                 EndRound();
-            } 
+            }
         }
 
-        public void TakeHouseTurn() {
-            if(GetSum(houseCards) < 17) {
+        public void TakeHouseTurn()
+        {
+            if (GetSum(houseCards) < 17)
+            {
                 Card c = deck.GetCard();
                 deck.RemoveCard(c);
                 houseCards.Add(c);
@@ -251,52 +308,75 @@ namespace CardApp {
         /// Takes a card from the "Deck" pile and adds it to the player's Hand
         /// </summary>
         /// <param name="player"></param>
-        public void GrabCardFromDeck(List<Card> cards) {
+        public void GrabCardFromDeck(List<Card> cards)
+        {
             Card c = deck.GetCard();
             deck.RemoveCard(c);
             cards.Add(c);
         }
 
-        public int GetSum(List<Card> cards) {
+        public int GetSum(List<Card> cards)
+        {
             List<int> possibleSums = new List<int>();
             possibleSums.Add(0);
-            for (int i = 0; i < cards.Count; i++){
+            for (int i = 0; i < cards.Count; i++)
+            {
                 Card c = cards[i];
-                if(c.Rank == 11 || c.Rank == 12 || c.Rank == 13) {
+                if (c.Rank == 11 || c.Rank == 12 || c.Rank == 13)
+                {
                     possibleSums.ForEach((x) => x += 10);
-                } else if(c.Rank == 1) {
+                }
+                else if (c.Rank == 1)
+                {
                     int count = possibleSums.Count;
-                    for(int y = 0; y < count; y++) {
+                    for (int y = 0; y < count; y++)
+                    {
                         possibleSums[y] += 1;
 
                         possibleSums.Add(possibleSums[y] + 10);
                     }
-                } else {
+                }
+                else
+                {
                     possibleSums.ForEach((x) => x += c.Rank);
                 }
             }
 
             var validSums = possibleSums.Where((x) => x <= 21);
-            if(validSums.Count() > 0) {
+            if (validSums.Count() > 0)
+            {
                 return validSums.Max();
             }
             return validSums.Count() > 0 ? validSums.Max() : possibleSums.Max();
         }
 
-        public override void Load(string path) {
-            throw new NotImplementedException();
+        public override void Load(string path)
+        {
+            BinaryFormatter format = new BinaryFormatter();
+            BlackjackGame state = (BlackjackGame)format.Deserialize(File.Open(path, FileMode.Open));
+
+            deck = state.deck;
+            houseCards = state.houseCards;
+            players = state.players;
+            currPlayer = state.currPlayer;
+            roundOver = state.roundOver;
         }
-        public override void Save(string path) {
-            throw new NotImplementedException();
+        public override void Save(string path)
+        {
+            BinaryFormatter format = new BinaryFormatter();
+            format.Serialize(File.Open(Path.GetFullPath(path), FileMode.OpenOrCreate), this);
         }
 
-        public Player GetPlayer(int index) {
+        public Player GetPlayer(int index)
+        {
             return players[index];
         }
-        public Player GetCurrentPlayer() {
+        public Player GetCurrentPlayer()
+        {
             return players[currPlayer];
         }
-        public List<Card> GetHouseCards() {
+        public List<Card> GetHouseCards()
+        {
             return houseCards;
         }
     }

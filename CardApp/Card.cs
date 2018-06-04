@@ -28,7 +28,22 @@ namespace CardApp {
         /// </summary>
         public int Suit { get; private set; }
 
-        public bool IsFlipped { get; set; }
+        private bool isFlipped;
+        public bool IsFlipped
+        {
+            get { return isFlipped; }
+            set
+            {
+                isFlipped = value;
+                if (image != null)
+                {
+                    image.Source = CardImageCreator.GetImage(this);
+                }
+            }
+        }
+
+        // Sorry
+        public Image image;
 
         public Card(int rank, int suite) {
             Rank = rank;

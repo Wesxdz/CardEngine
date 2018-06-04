@@ -22,16 +22,16 @@ namespace CardApp
         static public Image VisualizeCard(Card card, Panel panel)
         {
             Image cardImage = new Image();
+            card.image = cardImage;
             cardImage.Width = 66;
             cardImage.Height = 100;
-            cardImage.DataContext = card;
             cardImage.Source = GetImage(card);
-            card.image = cardImage;
+            cardImage.DataContext = card;
             panel.Children.Add(cardImage);
             return cardImage;
         }
 
-        static public BitmapImage GetImage(Card card)
+        static public ImageSource GetImage(Card card)
         {
             string imageString = @"Images\Cards\";
             if (card.IsFlipped)
@@ -77,7 +77,7 @@ namespace CardApp
 
             }
             imageString += ".png";
-            return new BitmapImage(new Uri(imageString));
+            return new BitmapImage(new Uri(imageString, UriKind.Relative));
         }
     }
 }

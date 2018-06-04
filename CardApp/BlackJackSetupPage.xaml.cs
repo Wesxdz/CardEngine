@@ -21,5 +21,11 @@ namespace CardApp {
         public BlackJackSetupPage() {
             InitializeComponent();
         }
+
+        private void submitBtn_Click(object sender, RoutedEventArgs e) {
+            Uri page = new Uri("BlackJackPage.xaml", UriKind.Relative);
+
+            NavigationService.Navigate(page);
+        }
     }
 }

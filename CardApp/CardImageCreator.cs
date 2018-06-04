@@ -27,7 +27,7 @@ namespace CardApp
             cardImage.DataContext = card;
             Binding imageBinding = new Binding();
             imageBinding.Source = cardImage.DataContext;
-            imageBinding.Converter = new CardToImageConverter();
+            //imageBinding.Converter = new CardToImageConverter();
             //imageBinding.Mode = BindingMode.OneWay;
             cardImage.SetBinding(Image.SourceProperty, imageBinding);
             cardImage.MouseDown += CardClicked;

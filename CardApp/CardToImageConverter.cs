@@ -6,28 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CardApp
 {
-    public class CardToImageConverter : IValueConverter
+    public class CardToImageConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public ImageSource Convert(Card card)
         {
             string imageString = @"Images\Cards\";
-            if (targetType != typeof(ImageSource))
-            {
-                throw new Exception("Target type needs to be an image");
-            }
-
-            Card c = (Card)parameter;
-
-            if ((bool)value)
+            
+            if (card.IsFlipped)
             {
                 imageString += "gray_back"; //Card Back
             }
             else
             {
-                switch (c.Rank)
+                switch (card.Rank)
                 {
                     case 1: //Ace
                         imageString += "A";
@@ -42,11 +37,11 @@ namespace CardApp
                         imageString += "K";
                         break;
                     default: //Numbers
-                        imageString += c.Rank;
+                        imageString += card.Rank;
                         break;
                 }
 
-                switch (c.Suit)
+                switch (card.Suit)
                 {
                     case 0: //Heart
                         imageString += "H";
@@ -65,12 +60,12 @@ namespace CardApp
             }
             imageString += ".png";
 
-            return imageString;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(imageString, UriKind.Relative);
+            bitmap.EndInit();
+            
+            return bitmap;
         }
     }
 }

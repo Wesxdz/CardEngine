@@ -8,32 +8,53 @@
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="GoFishPage">
 
-    <Grid Background="LightSlateGray">
+    <Grid Background="#605aa8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid Name="Table" Background="#476b84" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Name="Table" Background="#347047" Grid.ColumnSpan="3">
+            <Button Grid.Row="0" Name="btnGFBack" Content="Exit" Click="btnGFBack_Click"  VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch" Grid.Column="2"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <Image Source="/Images/Cards/gray_back.png" Width="66" Height="100" RenderTransformOrigin="0.32,0.439" HorizontalAlignment="Left"/>
+                <Image Source="/Images/Cards/gray_back.png" Width="66" Height="100" RenderTransformOrigin="0.32,0.439" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Name="lblPlayer1Name" Content="Player 1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Name="lblPlayer1Score" Content="0 pairs" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Image Grid.Row="1" Grid.Column="1" Source="/Images/Cards/gray_back.png" Width="66" Height="100" RenderTransformOrigin="0.32,0.439" HorizontalAlignment="Left"/>
+            <StackPanel Grid.Row="1">
+                <Label Name="lblPlayer2Name" Content="Player 2" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Name="lblPlayer2Score" Content="0 pairs" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Image Grid.Row="2" Grid.Column="1" Source="/Images/Cards/gray_back.png" Width="66" Height="100" RenderTransformOrigin="0.32,0.439" HorizontalAlignment="Left"/>
+            <StackPanel Grid.Row="2">
+                <Label Name="lblPlayer3Name" Content="Player 3" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Name="lblPlayer3Score" Content="0 pairs" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Label Grid.Column="1" Grid.Row="2" Content="Select a card rank to ask for" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
         </Grid>
-        <Label Foreground="White" Grid.Row="1" Grid.Column="1" Content="Draw Card" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="699,0,10,202"/>
-        <Label Name="lblPlayerName" Foreground="White" Grid.Row="1" Grid.Column="1" Content="Player Name" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Image Grid.Row="2" Grid.Column="1" Source="/Images/Cards/gray_back.png" Width="66" Height="100" RenderTransformOrigin="0.32,0.439" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Row="2">
+            <Label Name="lblActivePlayerName" Content="Player 4" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Name="lblActivePlayerScore" Content="0 pairs" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Name="ActiveHand" Orientation="Horizontal" Width="Auto" Height="Auto" HorizontalAlignment="Center" Margin="0, 15, 0, 0"/>
-        <Label Name="lblPlayerScore" FontSize="11" Content="Pairs: 0" Grid.Column="2" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Name="btnGFBack" Content="Exit" Click="btnGFBack_Click"  VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Stretch" Grid.Row="2"/>
     </Grid>
 </Page>

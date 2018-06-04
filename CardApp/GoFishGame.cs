@@ -221,7 +221,14 @@ namespace CardApp {
             {
                 Image image = CardImageCreator.VisualizeCard(card, page.ActiveHand);
                 image.Margin = new Thickness(-hand.cards.Count * 4, 0, 0, 0);
+                image.MouseDown += FlipCard;
             }
+        }
+
+        public void FlipCard(object sender, RoutedEventArgs e)
+        {
+            Card card = (Card)((Image)sender).DataContext;
+            card.IsFlipped = !card.IsFlipped;
         }
     }
 }

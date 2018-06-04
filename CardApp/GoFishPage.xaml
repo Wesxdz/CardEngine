@@ -38,6 +38,5 @@
         <Button Name="btnAskLeftPlayer" Grid.Row="1" Grid.Column="0" Content="Ask this Player" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnAskLeftPlayer_Click"/>
         <Button Name="btnAskRightPlayer" Grid.Row="1" Grid.Column="2" Content="Ask this Player" VerticalAlignment="Center" HorizontalAlignment="left" Click="btnAskRightPlayer_Click"/>
         <Button Name="btnAskTopPlayer" Grid.Row="0" Grid.Column="1" Content="Ask this Player" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnAskTopPlayer_Click"/>
-        <local:PlayerNamingAndSelectionControl x:Name="contol" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#DDDDDDDD" Loaded="PlayerNamingAndSelectionControl_Loaded"/>
     </Grid>
 </Page>

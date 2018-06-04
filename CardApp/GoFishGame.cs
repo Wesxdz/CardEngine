@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace CardApp {
     public class GoFishGame : Game {
 
+        public GoFishPage page;
 		public static int PLAYER_AMO = 2;
         public static int STARTING_CARDS = 5;
         public static int CARDS_RECIEVED_WHEN_EMPTY = 5;
@@ -80,17 +83,17 @@ namespace CardApp {
                     Card playerCard = deck.GetCard(deck.cards.Count - 1);
                     deck.RemoveCard(deck.cards.Count - 1);
 
-                    Card possiblPair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
-                    if (possiblPair != null) {
-                        players[y].Hand.RemoveCard(possiblPair);
-                        players[y].Pairs.AddCard(possiblPair);
-                        players[y].Pairs.AddCard(playerCard);
-                    } else {
-                        players[y].Hand.AddCard(playerCard);
-                    }
+                    //Card possiblPair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
+                    //if (possiblPair != null) {
+                    //    players[y].Hand.RemoveCard(possiblPair);
+                    //    players[y].Pairs.AddCard(possiblPair);
+                    //    players[y].Pairs.AddCard(playerCard);
+                    //} else {
+                    //}
+                    players[y].Hand.AddCard(playerCard);
                 }
             }
-
+            VisualizeActivePlayer();
             type = GameType.GoFish;
         }
 
@@ -195,6 +198,16 @@ namespace CardApp {
                     player.Hand.RemoveCard(pair);
                     player.Pairs.AddCard(pair);
                 }
+            }
+        }
+
+        public void VisualizeActivePlayer()
+        {
+            Deck hand = players[currPlayer].Hand;
+            foreach (Card card in hand.cards)
+            {
+                Image image = CardImageCreator.VisualizeCard(card, page.ActiveHand);
+                image.Margin = new Thickness(-hand.cards.Count * 4, 0, 0, 0);
             }
         }
     }

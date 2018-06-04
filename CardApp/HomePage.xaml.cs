@@ -35,7 +35,7 @@ namespace CardApp
         private void btnPlayGoFish_Click(object sender, RoutedEventArgs e)
         {
 
-            Uri page = new Uri("GoFishPage.xaml", UriKind.Relative);
+            Uri page = new Uri("GoFishSetupPage.xaml", UriKind.Relative);
             
             NavigationService.Navigate(page);
         }

@@ -47,5 +47,13 @@ namespace CardApp
 
             NavigationService.Navigate(page);
         }
+
+        public void SetupAnte() {
+
+        }
+
+        public void SetupBlackBlackJack() {
+
+        }
     }
 }

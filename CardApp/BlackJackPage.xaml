@@ -8,8 +8,39 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BlackJackPage">
 
-    <Grid>
-        <Label Content="BLACKJACK!" Margin="356,124,300,180"/>
-        <Button Content="Back" Click="Button_Click" Margin="673,314,25,47"/>
+    <!--<DockPanel>-->
+
+    <!--<StackPanel DockPanel.Dock="Top">
+            <Button Content="Top" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Left">
+            <Button Content="Left" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right">
+            <Button Content="Right" />
+        </StackPanel>-->
+
+    <!--</DockPanel>-->
+
+    <Grid DockPanel.Dock="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="currPlayerPanel" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+        <StackPanel x:Name="leftPanel" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+        <StackPanel x:Name="housePanel" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+        <StackPanel x:Name="rightPanel" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+
+        <StackPanel x:Name="centerPanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF74D57A" />
+
+        <Button x:Name="backBtn" Content="Back"  Grid.Row="2" Grid.Column="2"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" />
     </Grid>
 </Page>

@@ -21,7 +21,7 @@ namespace CardApp {
         public static Deck CreateStandardDeck() {
             Deck deck = new Deck();
 
-            for(int i = 0; i < 13; i++) {
+            for(int i = 1; i <= 13; i++) {
                 deck.AddCard(new Card(i, 0));
                 deck.AddCard(new Card(i, 1));
                 deck.AddCard(new Card(i, 2));

@@ -22,19 +22,99 @@ namespace CardApp
 	public partial class WarGamePage : Page
 	{
 		public WarGame game { get; private set; } = new WarGame();
+		Image imgP1FaceDown, imgP2FaceDown, imgP1FaceUp, imgP2FaceUp;
 		public WarGamePage()
 		{
 			InitializeComponent();
+			Card back = new Card(0, 0) { IsFlipped = true };
+			Image card;
+			Thickness faceDownThick = new Thickness(0, 100, 0, 0);
+			Thickness faceUpThick = new Thickness(0, 0, 0, 100);
+
+			card = CardImageCreator.VisualizeCard(back, grdParent);
+			Grid.SetColumn(card, 0);
+			card = CardImageCreator.VisualizeCard(back, grdParent);
+			Grid.SetColumn(card, 4);
+
+			imgP1FaceDown = CardImageCreator.VisualizeCard(back, grdParent);
+			imgP1FaceDown.Margin = faceDownThick;
+			imgP1FaceDown.Visibility = Visibility.Hidden;
+			Grid.SetColumn(imgP1FaceDown, 1);
+			imgP2FaceDown = CardImageCreator.VisualizeCard(back, grdParent);
+			imgP2FaceDown.Margin = faceDownThick;
+			imgP2FaceDown.Visibility = Visibility.Hidden;
+			Grid.SetColumn(imgP2FaceDown, 3);
+
+			imgP1FaceUp = CardImageCreator.VisualizeCard(back, grdParent);
+			imgP1FaceUp.Margin = faceUpThick;
+			imgP1FaceUp.Visibility = Visibility.Hidden;
+			Grid.SetColumn(imgP1FaceUp, 1);
+			imgP2FaceUp = CardImageCreator.VisualizeCard(back, grdParent);
+			imgP2FaceUp.Margin = faceUpThick;
+			imgP2FaceUp.Visibility = Visibility.Hidden;
+			Grid.SetColumn(imgP2FaceUp, 3);
+
+			UpdateUI();
 		}
 
 		public void UpdateUI()
 		{
-			lstP1Cards.ItemsSource = game.p1.cards;
-			lstP1FaceDown.ItemsSource = game.p1.faceDown;
-			lstP1FaceUp.ItemsSource = game.p1.faceUp;
-			lstP2Cards.ItemsSource = game.p2.cards;
-			lstP2FaceDown.ItemsSource = game.p2.faceDown;
-			lstP2FaceUp.ItemsSource = game.p2.faceUp;
+			if (game.p1.isComputer) btnP1Play.IsEnabled = false;
+			if (game.p2.isComputer) btnP2Play.IsEnabled = false;
+			lblAnnounce.Text = game.GetAnnounceText();
+			if (lblAnnounce.Text.Length > 5 && lblAnnounce.Text.Substring(lblAnnounce.Text.Length - 5).Equals("game!"))
+			{
+				btnP1Play.IsEnabled = false;
+				btnP2Play.IsEnabled = false;
+			}
+			lblP1CardCount.Content = game.p1.cards.Count;
+			lblP2CardCount.Content = game.p2.cards.Count;
+			if (game.p1.faceUp.Count > 0)
+			{
+				imgP1FaceUp.Visibility = Visibility.Visible;
+				imgP1FaceUp.Source = CardImageCreator.Convert(game.p1.faceUp.Last());
+				lblP1FaceUpCount.Visibility = Visibility.Visible;
+				lblP1FaceUpCount.Content = game.p1.faceUp.Count;
+			}
+			else
+			{
+				imgP1FaceUp.Visibility = Visibility.Hidden;
+				lblP1FaceUpCount.Visibility = Visibility.Hidden;
+			}
+			if (game.p2.faceUp.Count > 0)
+			{
+				imgP2FaceUp.Visibility = Visibility.Visible;
+				imgP2FaceUp.Source = CardImageCreator.Convert(game.p2.faceUp.Last());
+				lblP2FaceUpCount.Visibility = Visibility.Visible;
+				lblP2FaceUpCount.Content = game.p2.faceUp.Count;
+			}
+			else
+			{
+				imgP2FaceUp.Visibility = Visibility.Hidden;
+				lblP2FaceUpCount.Visibility = Visibility.Hidden;
+			}
+			if (game.p1.faceDown.Count > 0)
+			{
+				imgP1FaceDown.Visibility = Visibility.Visible;
+				lblP1FaceDownCount.Visibility = Visibility.Visible;
+				lblP1FaceDownCount.Content = game.p1.faceDown.Count;
+			}
+			else
+			{
+				imgP1FaceDown.Visibility = Visibility.Hidden;
+				lblP1FaceDownCount.Visibility = Visibility.Hidden;
+			}
+			if (game.p2.faceDown.Count > 0)
+			{
+				imgP2FaceDown.Visibility = Visibility.Visible;
+				lblP2FaceDownCount.Visibility = Visibility.Visible;
+				lblP2FaceDownCount.Content = game.p2.faceDown.Count;
+			}
+			else
+			{
+				imgP2FaceDown.Visibility = Visibility.Hidden;
+				lblP2FaceDownCount.Visibility = Visibility.Hidden;
+			}
 		}
 
 		private void btnP1Play_Click(object sender, RoutedEventArgs e)
@@ -52,6 +132,7 @@ namespace CardApp
 		private void btnSave_Click(object sender, RoutedEventArgs e)
 		{
 			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Filter = "War Save|*.warsave|All Files|*.*";
 			if (!sfd.ShowDialog().Value) return;
 			game.Save(sfd.FileName);
 		}
@@ -59,11 +140,6 @@ namespace CardApp
 		private void btnQuit_Click(object sender, RoutedEventArgs e)
 		{
 			NavigationService.Navigate(new WarPage());
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			UpdateUI();
 		}
 	}
 }

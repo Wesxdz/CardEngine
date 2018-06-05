@@ -34,13 +34,47 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="currPlayerPanel" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="leftPanel" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="housePanel" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="rightPanel" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+        <StackPanel x:Name="currPlayerPanel" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF605AA8">
+            <StackPanel Orientation="Vertical">
+                <Label x:Name="currPlayerNameLabel" Content="Player 1"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="currPlayerAnteLabel" Content="Player 1"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="currPlayerBankLabel" Content="Player 1"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+            </StackPanel>
+           
+            <ComboBox x:Name="anteComboBox" Width="70" Height="20" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+            <Button x:Name="anteBtn" Content="Ante up!" Width="70" Height="30" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="anteBtn_Click" Visibility="Hidden" />
+        </StackPanel>
 
-        <StackPanel x:Name="centerPanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF74D57A" />
+        <StackPanel x:Name="leftPanel" Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF605AA8" >
+            <StackPanel x:Name="player2Panel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Label x:Name="player2NameLabel" Content="Player 2"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Label x:Name="player2AnteLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Label x:Name="player2BankLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+            <StackPanel x:Name="player3Panel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Label x:Name="player3NameLabel" Content="Player 3"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Label x:Name="player3AnteLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="player3BankLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="rightPanel" Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF605AA8">
+            <StackPanel x:Name="player4Panel" VerticalAlignment="Stretch">
+                <Label x:Name="player4NameLabel" Content="Player 4"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="player4AnteLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="player4BankLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+            <StackPanel x:Name="player5Panel" VerticalAlignment="Stretch">
+                <Label x:Name="player5NameLabel" Content="Player 5"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="player5AnteLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" />
+                <Label x:Name="player5BankLabel" Content="0"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+        </StackPanel>
 
-        <Button x:Name="backBtn" Content="Back"  Grid.Row="2" Grid.Column="2"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" />
+        <StackPanel x:Name="housePanel" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF605AA8">
+
+        </StackPanel>
+        <StackPanel x:Name="centerPanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF347047" />
+
+        <Button x:Name="backBtn" Content="Exit Game"  Grid.Row="0" Grid.Column="2" Margin="20,20,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" />
     </Grid>
 </Page>

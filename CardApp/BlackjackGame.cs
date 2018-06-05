@@ -92,6 +92,26 @@ namespace CardApp
 
             StartRound();
         }
+
+        public void TakeAnte(int player, int ante) {
+            if (player != currPlayer) {
+                MessageBox.Show("Invalid Player playing!");
+                return;
+            }
+            if (!IsValidBet(ante)) {
+                MessageBox.Show("Ante must be $1, $5, or $10");
+            }
+
+            Player p = players[player];
+
+            p.currBet = ante;
+
+            currPlayer++;
+            if (currPlayer >= players.Count) {
+                currPlayer = 0;
+            }
+        }
+
         public bool IsValidBet(int bet)
         {
             return bet == 1 || bet == 5 || bet == 10;
@@ -105,7 +125,7 @@ namespace CardApp
                 players[i].cards.Clear();
                 players[i].cards.Add(new List<Card>());
                 GrabCardFromDeck(players[i].cards[0]);
-                players[i].isHitting[0] = true;
+                players[i].isHitting.Add(true);
             }
             // House Card
             {
@@ -371,9 +391,9 @@ namespace CardApp
         {
             return players[index];
         }
-        public Player GetCurrentPlayer()
+        public int GetCurrentPlayer()
         {
-            return players[currPlayer];
+            return currPlayer;
         }
         public List<Card> GetHouseCards()
         {

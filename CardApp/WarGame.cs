@@ -23,7 +23,6 @@ namespace CardApp
 
 		public Player p1 = new Player();
 		public Player p2 = new Player();
-		bool p1Turn = true;
 
 		/// <summary>
 		/// Moves a card from the players hand to the faceUp position
@@ -82,15 +81,19 @@ namespace CardApp
 			}
 			if (p.faceUp.Count <= op.faceUp.Count)
 			{
-				p.faceUp.Add(p.cards.Dequeue());
-				if (op.isComputer) op.faceUp.Add(op.cards.Dequeue());
-				p1Turn = !p1Turn;
+				if (p.cards.Count > 0) p.faceUp.Add(p.cards.Dequeue());
+				else
+				{
+					p.faceUp.Add(p.faceDown.Last());
+					p.faceDown.Remove(p.faceDown.Last());
+				}
+				if (op.isComputer) PlayCard(playerIndex % 2 + 1);
 			}
 		}
-
 		public string GetAnnounceText()
 		{
 			if (p1.faceUp.Count == 0 || p2.faceUp.Count == 0) return "";
+			if (p1.faceUp.Count != p2.faceUp.Count) return "";
 			if (p1.faceUp.Last().Rank < p2.faceUp.Last().Rank)
 			{
 				if (p1.cards.Count == 0) return p2.name + " won the game!";
@@ -101,7 +104,13 @@ namespace CardApp
 				if (p2.cards.Count == 0) return p1.name + " won the game!";
 				return p1.name + " won the round";
 			}
-			else return "WAR!";
+			else
+			{
+				if (p1.cards.Count == 0 && p2.cards.Count == 0) return p1.name + " and " + p2.name + " tied the game!";
+				if (p1.cards.Count == 0) return p2.name + " won the game!";
+				if (p2.cards.Count == 0) return p1.name + " won the game!";
+				return "WAR!";
+			}
 		}
 		public Player GetPlayer(int playerIndex)
 		{
@@ -117,7 +126,6 @@ namespace CardApp
 		}
 		public override void Start()
 		{
-			p1Turn = true;
 			p1.cards.Clear();
 			p2.cards.Clear();
 			p1.faceUp.Clear();
@@ -128,8 +136,9 @@ namespace CardApp
 			stdDeck.Shuffle();
 			for (int i = 0; i < 26; ++i) p1.cards.Enqueue(stdDeck.GetCard(i));
 			for (int i = 26; i < 52; ++i) p2.cards.Enqueue(stdDeck.GetCard(i));
+			//for (int i = 0; i < 26; ++i) p1.cards.Enqueue(new Card(2, 0));
+			//for (int i = 0; i < 26; ++i) p2.cards.Enqueue(new Card(2, 0));
 		}
-
 		public override void Exit()	{ }
 		public override void Save(string path)
 		{
@@ -143,7 +152,6 @@ namespace CardApp
 			p1 = state.p1;
 			p2 = state.p2;
 		}
-
 		public override void InitializePlayers(int playerAmo, string[] names, bool[] areHuman)
 		{
 			if (playerAmo != 2) throw new ArgumentOutOfRangeException("playerAmo", "playerAmo must be 2");

@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -23,18 +23,28 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="244,30,243.333,67.667"/>
-        <Label Name="lblMoreText" Content="Please name your Players" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="161,67,160.333,30.667" Height="37" Width="250" />
+        <Label Name="lblTitle" Content="GO FISH" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="250" HorizontalContentAlignment="Center"/>
+        <Label Name="lblMoreText" Content="Please name your Players" Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="250" />
+        <Label Name="lblText" Content="Must be 2-4 players" Grid.Column="1" Grid.Row="0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="37" Width="250" HorizontalContentAlignment ="Center" />
 
-        <TextBox Name="tbxPlayer1Name" Grid.Row="1" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player1"/>
-        <TextBox Name="tbxPlayer2Name" Grid.Row="2" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player2"/>
-        <TextBox Name="tbxPlayer3Name" IsEnabled="False" Grid.Row="3" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player3" Visibility="Hidden"/>
-        <TextBox Name="tbxPlayer4Name" IsEnabled="False" Grid.Row="4" Grid.Column ="1" Height="40" Width="250" HorizontalAlignment ="Center" Text="Player4" Visibility="Hidden"/>
+        <TextBox Name="tbxPlayer1Name" Grid.Row="1" Grid.Column ="1" Height="25" Width="200" HorizontalAlignment ="Right" Text="Player1" VerticalAlignment="Center"/>
+        <Label Name="lblPlayer1" Content="Player 1" Grid.Row="1" Grid.Column="1" Height="25" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        
+        <TextBox Name="tbxPlayer2Name" Grid.Row="2" Grid.Column ="1" Height="25" Width="200" HorizontalAlignment ="Right" Text="Player2" VerticalAlignment="Center"/>
+        <Label Name="lblPlayer2" Content="Player 2" Grid.Row="2" Grid.Column="1" Height="25" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        
+        <TextBox Name="tbxPlayer3Name" IsEnabled="False" Grid.Row="3" Grid.Column ="1" Height="25" Width="200" HorizontalAlignment ="Right" Text="Player3" Visibility="Hidden"/>
+        <Label Name="lblPlayer3" Content="Player 3" Grid.Row="3" Grid.Column="1" Height="25" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+        
+        <TextBox Name="tbxPlayer4Name" IsEnabled="False" Grid.Row="4" Grid.Column ="1" Height="25" Width="200" HorizontalAlignment ="Right" Text="Player4" Visibility="Hidden"/>
+        <Label Name="lblPlayer4" Content="Player 4" Grid.Row="4" Grid.Column="1" Height="25" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
 
-        <Button Name="btnAddPlayer" Content="Add" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Width="100" Height="25" Margin="151,40.667,270.333,0.333" Grid.RowSpan="2" Click="btnAddPlayer_Click"/>
-        <Button Name="btnRemovePlayer" Content="Remove" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Width="100" Height="25" Margin="298,40.667,173.333,0.333" Grid.RowSpan="2" Click="btnRemovePlayer_Click" />
+        <Button Name="btnAddPlayer" Content="Add" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Width="100" Height="25" Click="btnAddPlayer_Click" Margin="111.667,8.333,233,7.333"/>
+        <Button Name="btnRemovePlayer" Content="Remove" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Width="100" Height="25"  Click="btnRemovePlayer_Click" Margin="229.667,8.333,115,7.333"  />
 
         <Button Name="btnPlay" Content="Play" Grid.Column="1" Grid.Row="6" Height="40" Width="150" HorizontalAlignment="Right" Margin="0,45.333,44.333,40" Click="btnPlay_Click"/>
         <Button Name="btnBack" Content="Back" Grid.Column="1" Grid.Row="6" Height="40" Width="150" HorizontalAlignment="Left" Margin="72,45.333,0,40" Click="btnBack_Click"/>
+
+        <Button Name="btnLoad" Content="Load" Grid.Column="1" Grid.Row="6" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnLoad_Click"/>
     </Grid>
 </Page>

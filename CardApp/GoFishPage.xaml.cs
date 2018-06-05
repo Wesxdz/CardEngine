@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace CardApp
 {
@@ -34,6 +35,21 @@ namespace CardApp
             Uri page = new Uri("HomePage.xaml", UriKind.Relative);
 
             NavigationService.Navigate(page);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog savePrompt = new SaveFileDialog();
+            savePrompt.ShowDialog();
+            if (savePrompt.FileName != "")
+            {
+                instance.Save(savePrompt.FileName);
+            }
+        }
+
+        private void Deck_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

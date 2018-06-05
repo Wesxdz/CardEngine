@@ -28,6 +28,9 @@ namespace CardApp {
 
         Player[] players;
         int currPlayer;
+        List<Label> playerNamesLabels;
+        List<Label> playerScoresLabels;
+        List<StackPanel> nonActivePlayerHands;
 
         //IEnumerable<int> placements;
         bool gameHasEnded = false;
@@ -41,6 +44,9 @@ namespace CardApp {
                 players[i].name = names[i];
                 // Computers aren't allowed in Go Fish
             }
+            playerNamesLabels = new List<Label>() { page.lblPlayer1Name, page.lblPlayer2Name, page.lblPlayer3Name };
+            playerScoresLabels = new List<Label>() { page.lblPlayer1Score, page.lblPlayer2Score, page.lblPlayer3Score };
+            nonActivePlayerHands = new List<StackPanel>() { page.Player1Hand, page.Player2Hand, page.Player3Hand };
         }
 
         public override void Exit() {
@@ -96,17 +102,28 @@ namespace CardApp {
                     Card playerCard = deck.GetCard(deck.cards.Count - 1);
                     deck.RemoveCard(deck.cards.Count - 1);
 
-                    //Card possiblPair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
-                    //if (possiblPair != null) {
-                    //    players[y].Hand.RemoveCard(possiblPair);
-                    //    players[y].Pairs.AddCard(possiblPair);
-                    //    players[y].Pairs.AddCard(playerCard);
-                    //} else {
-                    //}
-                    players[y].Hand.AddCard(playerCard);
+                    Card possiblePair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
+                    if (possiblePair != null) {
+                        players[y].Hand.RemoveCard(possiblePair);
+                        players[y].Pairs.AddCard(possiblePair);
+                        players[y].Pairs.AddCard(playerCard);
+                    } else {
+                        players[y].Hand.AddCard(playerCard);
+                    }
                 }
             }
             VisualizeActivePlayer();
+            int loopIndex = 0;
+            int activeLane = 0;
+            foreach (Player player in players)
+            {
+                if (currPlayer != loopIndex)
+                {
+                    VisualizePlayer(player, playerNamesLabels[activeLane], playerScoresLabels[activeLane], nonActivePlayerHands[activeLane]);
+                    activeLane++;
+                }
+                loopIndex++;
+            }
             type = GameType.GoFish;
         }
 
@@ -217,16 +234,33 @@ namespace CardApp {
 
         public void VisualizeActivePlayer()
         {
+            page.ActiveHand.Children.Clear();
+            page.lblActivePlayerName.Content = players[currPlayer].name;
+            page.lblActivePlayerScore.Content = players[currPlayer].Pairs.cards.Count/2 + " pairs";
             Deck hand = players[currPlayer].Hand;
             foreach (Card card in hand.cards)
             {
+                card.IsFlipped = false;
                 Image image = CardImageCreator.VisualizeCard(card, page.ActiveHand);
                 image.Margin = new Thickness(-hand.cards.Count * 4, 0, 0, 0);
-                image.MouseDown += FlipCard;
+                image.MouseDown += IndicateCardSelection;
             }
         }
 
-        public void FlipCard(object sender, RoutedEventArgs e)
+        public void VisualizePlayer(Player player, Label name, Label score, Panel hold)
+        {
+            hold.Children.Clear();
+            name.Content = player.name;
+            score.Content = player.Pairs.cards.Count/2 + " pairs";
+            foreach (Card card in player.Hand.cards)
+            {
+                card.IsFlipped = true;
+                Image image = CardImageCreator.VisualizeCard(card, hold);
+                image.Margin = new Thickness(-20, 0, 0, 0);
+            }
+        }
+
+        public void IndicateCardSelection(object sender, RoutedEventArgs e)
         {
             Card card = (Card)((Image)sender).DataContext;
             card.IsFlipped = !card.IsFlipped;

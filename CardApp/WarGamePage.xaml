@@ -5,57 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CardApp"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="WarGamePage">
-	<StackPanel Orientation="Horizontal">
-		<ListView x:Name="lstP1Cards">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="lstP1FaceDown">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="lstP1FaceUp">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="lstP2Cards">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="lstP2FaceDown">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="lstP2FaceUp">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Rank" Width="10" DisplayMemberBinding="{Binding Rank}" />
-					<GridViewColumn Header="Suit" Width="10" DisplayMemberBinding="{Binding Suit}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<Button Content="UpdateUI" Click="Button_Click"/>
-	</StackPanel>
+	<Grid x:Name="grdParent">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="150"/>
+		</Grid.ColumnDefinitions>
+		<Button x:Name="btnP1Play" Grid.Column="0" Content="Play Card" Click="btnP1Play_Click" Height="100" VerticalAlignment="Bottom"/>
+		<Label x:Name="lblP1Name" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Player 1" Margin="0,0,0,200"/>
+		<Label x:Name="lblP1CardCount" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,120,0,0"/>
+		<Label x:Name="lblP1FaceDownCount" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,220,0,0"/>
+		<Label x:Name="lblP1FaceUpCount" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,0,0,220"/>
+		<Button x:Name="btnP2Play" Grid.Column="4" Content="Play Card" Click="btnP2Play_Click" Height="100" VerticalAlignment="Bottom"/>
+		<Label x:Name="lblP2Name" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Player 2" Margin="0,0,0,200"/>
+		<Label x:Name="lblP2CardCount" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,120,0,0"/>
+		<Label x:Name="lblP2FaceDownCount" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,220,0,0"/>
+		<Label x:Name="lblP2FaceUpCount" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,0,0,220"/>
+		<TextBlock x:Name="lblAnnounce" Grid.Column="2" Text="Announce" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+		<Button Grid.Column="2" Content="Save" VerticalAlignment="Bottom" Click="btnSave_Click" Height="20" Width="100" Margin="0,0,0,20"/>
+		<Button Grid.Column="2" Content="Quit" VerticalAlignment="Bottom" Click="btnQuit_Click" Height="20" Width="100"/>
+	</Grid>
 </Page>

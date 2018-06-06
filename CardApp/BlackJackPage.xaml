@@ -93,9 +93,9 @@
 
         <!--House-->
         <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="1" Background="#FF353535" >
-            <StackPanel x:Name="housePanel" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF878787">
+            <StackPanel x:Name="housePanel" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF353535">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Label x:Name="houseNameLabel" Content="House"  Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="houseNameLabel" Content="House"  Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                 </StackPanel>
                 <UniformGrid x:Name="houseCardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     
@@ -116,8 +116,8 @@
                 </Grid.ColumnDefinitions>
 
                 
-                <Button x:Name="saveBtn" Content="Save" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="saveBtn_Click"/>
-                <Button x:Name="loadBtn" Content="Load" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="loadBtn_Click"/>
+                <Button x:Name="saveBtn" Content="Save" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="saveBtn_Click" IsEnabled="False"/>
+                <Button x:Name="loadBtn" Content="Load" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="loadBtn_Click" IsEnabled="False"/>
                 <Button x:Name="backBtn" Content="Exit" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="backBtn_Click"/>
 
                 <StackPanel x:Name="antePanel" Margin="0,40,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >

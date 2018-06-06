@@ -37,11 +37,11 @@
             <TextBox x:Name="player4Text" Text="Player 4" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="3"/>
             <TextBox x:Name="player5Text" Text="Player 5" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="4"/>
 
-            <Button x:Name="addPlayerBtn" Content="Add Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="addPlayerBtn_Click" Background="#FFFFDC03"/>
-            <Button x:Name="removePlayerBtn" Content="Remove Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="removePlayerBtn_Click" Background="#FFFEC123"/>
+            <Button x:Name="addPlayerBtn" Content="Add Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="addPlayerBtn_Click" Background="#FFDDDDDD"/>
+            <Button x:Name="removePlayerBtn" Content="Remove Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="removePlayerBtn_Click" Background="#FFDDDDDD"/>
 
-            <Button x:Name="submitBtn" Content="Play" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="submitBtn_Click" Background="#FFFFDC03"/>
-            <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="backBtn_Click" Background="#FFFEC123"/>
+            <Button x:Name="submitBtn" Content="Play" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="submitBtn_Click" Background="#FFDDDDDD"/>
+            <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="backBtn_Click" Background="#FFDDDDDD"/>
 
         </Grid>
     </StackPanel>

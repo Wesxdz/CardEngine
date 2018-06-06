@@ -15,18 +15,18 @@
 			<ColumnDefinition Width="150"/>
 			<ColumnDefinition Width="150"/>
 		</Grid.ColumnDefinitions>
-		<Button x:Name="btnP1Play" Grid.Column="0" Content="Play Card" Click="btnP1Play_Click" Height="100" VerticalAlignment="Bottom" Background="#FFFFDC03"/>
+		<Button x:Name="btnP1Play" Grid.Column="0" Content="Play Card" Click="btnP1Play_Click" Height="100" VerticalAlignment="Bottom" Background="#FFDDDDDD"/>
 		<Label x:Name="lblP1Name" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Player 1" Margin="0,0,0,200" Foreground="White"/>
         <Label x:Name="lblP1CardCount" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,120,0,0" Foreground="White"/>
 		<Label x:Name="lblP1FaceDownCount" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,220,0,0" Foreground="White"/>
         <Label x:Name="lblP1FaceUpCount" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,0,0,220" Foreground="White"/>
-        <Button x:Name="btnP2Play" Grid.Column="4" Content="Play Card" Click="btnP2Play_Click" Height="100" VerticalAlignment="Bottom" Background="#FFFFDC03"/>
+        <Button x:Name="btnP2Play" Grid.Column="4" Content="Play Card" Click="btnP2Play_Click" Height="100" VerticalAlignment="Bottom" Background="#FFDDDDDD"/>
         <Label x:Name="lblP2Name" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Player 2" Margin="0,0,0,200" Foreground="White"/>
         <Label x:Name="lblP2CardCount" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,120,0,0" Foreground="White"/>
         <Label x:Name="lblP2FaceDownCount" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,220,0,0" Foreground="White"/>
         <Label x:Name="lblP2FaceUpCount" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="0" Margin="0,0,0,220" Foreground="White"/>
         <TextBlock x:Name="lblAnnounce" Grid.Column="2" Text="Announce" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-		<Button Grid.Column="2" Content="Save" VerticalAlignment="Bottom" Click="btnSave_Click" Height="20" Width="100" Margin="0,0,0,20" Background="#FFFFDC03"/>
-		<Button Grid.Column="2" Content="Quit" VerticalAlignment="Bottom" Click="btnQuit_Click" Height="20" Width="100" Background="#FFFEC123"/>
+		<Button Grid.Column="2" Content="Save" VerticalAlignment="Bottom" Click="btnSave_Click" Height="20" Width="100" Margin="0,0,0,20" Background="#FFDDDDDD"/>
+		<Button Grid.Column="2" Content="Quit" VerticalAlignment="Bottom" Click="btnQuit_Click" Height="20" Width="100" Background="#FFDDDDDD"/>
 	</Grid>
 </Page>

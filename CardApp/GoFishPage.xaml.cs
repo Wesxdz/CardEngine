@@ -49,7 +49,21 @@ namespace CardApp
 
         private void Deck_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            instance.CurrentPlayerGoFish();
+            if (instance.deck.cards.Count == 0)
+            {
+                ((Image)sender).Source = null;
+            }
+        }
 
+        private void btnNextTurn_Click(object sender, RoutedEventArgs e)
+        {
+            instance.NextPlayerTakeTurn();
+        }
+
+        private void btnHide_Click(object sender, RoutedEventArgs e)
+        {
+            instance.HideActivePlayerCards();
         }
     }
 }

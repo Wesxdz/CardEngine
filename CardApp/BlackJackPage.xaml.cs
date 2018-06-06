@@ -28,6 +28,8 @@ namespace CardApp
 
         int currPlayerTurn = 0;
 
+        Dictionary<int, Panel> playerPanels;
+        //Panel[] playerPanels;
         public BlackJackPage()
         {
             InitializeComponent();
@@ -36,6 +38,21 @@ namespace CardApp
             anteComboBox.Items.Add(5);
             anteComboBox.Items.Add(10);
             anteComboBox.SelectedIndex = 0;
+
+            playerPanels = new Dictionary<int, Panel>();
+            playerPanels[0] = currPlayerPanel;
+            if (playerAmo > 1) {
+                playerPanels[1] = player2CardPanel;
+            }
+            if (playerAmo > 2) {
+                playerPanels[2] = player3CardPanel;
+            }
+            if (playerAmo > 3) {
+                playerPanels[3] = player4CardPanel;
+            }
+            if (playerAmo > 4) {
+                playerPanels[4] = player5CardPanel;
+            }
         }
 
         public void Initialize() {
@@ -43,21 +60,88 @@ namespace CardApp
             game.InitializePlayers(playerAmo, playerNames, null);
             game.Start();
 
-            // Do antes
-            // Start Round
-
             // Display Cards
             // Buttons
             // Hit Btn
 
+            // Center Card / Deck
+            {
+                Card c = new Card(1, 0);
+                c.IsFlipped = true;
+                var image = CardImageCreator.VisualizeCard(c, centerPanel);
+                Grid.SetColumn(image, 0);
+                Grid.SetRow(image, 0);
+                Grid.SetColumnSpan(image, 2);
+                Grid.SetRowSpan(image, 2);
+            }
+
+            HideBlackJack();
             SetupAnte();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void backBtn_Click(object sender, RoutedEventArgs e) {
             Uri page = new Uri("HomePage.xaml", UriKind.Relative);
 
             NavigationService.Navigate(page);
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e) {
+            
+            //game.Save()
+        }
+
+        private void loadBtn_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void hitBtn_Click(object sender, RoutedEventArgs e) {
+            TakeTurn(true);
+        }
+        private void passBtn_Click(object sender, RoutedEventArgs e) {
+            TakeTurn(false);
+        }
+        private void TakeTurn(bool hitting) {
+            game.TakeTurn(currPlayerTurn, new bool[1] { hitting });
+            if (game.gameOver) {
+                backBtn_Click(null, null);
+                return;
+            }
+
+            if (game.roundOver) {
+                playerAmo = BlackjackGame.PLAYER_AMO;
+
+                DefaultPlayerContext();
+                DefaultCards();
+
+                MessageBox.Show("Round Ended");
+
+                HideBlackJack();
+                SetupAnte();
+                return;
+            }
+
+            int previousPlayerTurn = currPlayerTurn;
+            currPlayerTurn = game.GetCurrentPlayer();
+
+            var previousPlayer = game.GetPlayer(previousPlayerTurn);
+            var currPlayer = game.GetPlayer(currPlayerTurn);
+
+            //Find curr Player Panel
+            // Set us to that Panel
+            playerPanels[currPlayerTurn].DataContext = null;
+            playerPanels[currPlayerTurn].DataContext = previousPlayer;
+            BindCards(GetCardPanel(playerPanels[currPlayerTurn]), previousPlayer.cards[0]);
+
+            playerPanels[previousPlayerTurn].DataContext = null;
+            playerPanels[previousPlayerTurn].DataContext = currPlayer;
+            BindCards(GetCardPanel(playerPanels[previousPlayerTurn]), currPlayer.cards[0]);
+
+            BindCards(houseCardPanel, game.houseCards);
+
+            var temp = playerPanels[previousPlayerTurn];
+            playerPanels[previousPlayerTurn] = playerPanels[currPlayerTurn];
+            playerPanels[currPlayerTurn] = temp;
+
         }
 
         private void anteBtn_Click(object sender, RoutedEventArgs e) {
@@ -65,32 +149,24 @@ namespace CardApp
 
             int previousPlayerTurn = currPlayerTurn;
             currPlayerTurn = game.GetCurrentPlayer();
-            // Swap between this panel and another...
 
             var previousPlayer = game.GetPlayer(previousPlayerTurn);
+
             var currPlayer = game.GetPlayer(currPlayerTurn);
 
-            currPlayerNameLabel.Content = currPlayer.name;
+            //Find curr Player Panel
+            // Set us to that Panel
+            playerPanels[currPlayerTurn].DataContext = null;
+            playerPanels[currPlayerTurn].DataContext = previousPlayer;
 
-            switch (currPlayerTurn) {
-                case 1:
-                    player2NameLabel.Content = previousPlayer.name;
-                    player2AnteLabel.Content = "$" +previousPlayer.currBet;
-                    break;
-                case 2:
-                    player3NameLabel.Content = previousPlayer.name;
-                    player3AnteLabel.Content = "$" + previousPlayer.currBet;
-                    break;
-                case 3:
-                    player4NameLabel.Content = previousPlayer.name;
-                    player4AnteLabel.Content = "$" + previousPlayer.currBet;
-                    break;
-                case 4:
-                    player5NameLabel.Content = previousPlayer.name;
-                    player5AnteLabel.Content = "$" + previousPlayer.currBet;
-                    break;
-            }
-            if(previousPlayerTurn == playerAmo-1) {
+            playerPanels[previousPlayerTurn].DataContext = null;
+            playerPanels[previousPlayerTurn].DataContext = currPlayer;
+
+            var temp = playerPanels[previousPlayerTurn];
+            playerPanels[previousPlayerTurn] = playerPanels[currPlayerTurn];
+            playerPanels[currPlayerTurn] = temp;
+
+            if (previousPlayerTurn == playerAmo - 1) {
                 HideAnte();
                 SetupBlackBlackJack();
             }
@@ -98,157 +174,179 @@ namespace CardApp
 
         public void SetupAnte() {
             currPlayerTurn = game.GetCurrentPlayer();
-            var currentPlayer = game.GetPlayer(currPlayerTurn);
 
-            currPlayerNameLabel.Visibility = Visibility.Visible;
-            currPlayerNameLabel.Content = currentPlayer.name;
+            InitPlayerInfo();
 
-            anteBtn.Visibility = Visibility.Visible;
-            anteComboBox.Visibility = Visibility.Visible;
+            RemoveCards();
 
-            if (playerAmo > 1) {
-                var p = game.GetPlayer(1);
-
-                player2NameLabel.Visibility = Visibility.Visible;
-                player2AnteLabel.Visibility = Visibility.Visible;
-
-                player2NameLabel.Content = p.name;
-                player2AnteLabel.Content = "$" + p.currBet;
-            } else {
-                player2NameLabel.Visibility = Visibility.Hidden;
-                player2AnteLabel.Visibility = Visibility.Hidden;
-            }
-
-            if (playerAmo > 2) {
-                var p = game.GetPlayer(2);
-
-                player3NameLabel.Visibility = Visibility.Visible;
-                player3AnteLabel.Visibility = Visibility.Visible;
-
-                player3NameLabel.Content = p.name;
-                player3AnteLabel.Content = "$" + p.currBet;
-            } else {
-                player3NameLabel.Visibility = Visibility.Hidden;
-                player3AnteLabel.Visibility = Visibility.Hidden;
-            }
-
-            if (playerAmo > 3) {
-                var p = game.GetPlayer(3);
-
-                player4NameLabel.Visibility = Visibility.Visible;
-                player4AnteLabel.Visibility = Visibility.Visible;
-
-                player4NameLabel.Content = p.name;
-                player4AnteLabel.Content = "$" + p.currBet;
-            } else {
-                player4NameLabel.Visibility = Visibility.Hidden;
-                player4AnteLabel.Visibility = Visibility.Hidden;
-            }
-
-            if (playerAmo > 4) {
-                var p = game.GetPlayer(4);
-
-                player5NameLabel.Visibility = Visibility.Visible;
-                player5AnteLabel.Visibility = Visibility.Visible;
-
-                player5NameLabel.Content = p.name;
-                player5AnteLabel.Content = "$" + p.currBet;
-            } else {
-                player5NameLabel.Visibility = Visibility.Hidden;
-                player5AnteLabel.Visibility = Visibility.Hidden;
-            }
+            antePanel.Visibility = Visibility.Visible;
         }
         public void HideAnte() {
-            currPlayerNameLabel.Visibility = Visibility.Hidden;
-            anteBtn.Visibility = Visibility.Hidden;
-            anteComboBox.Visibility = Visibility.Hidden;
-
-            player2NameLabel.Visibility = Visibility.Hidden;
-            player2AnteLabel.Visibility = Visibility.Hidden;
-
-            player3NameLabel.Visibility = Visibility.Hidden;
-            player3AnteLabel.Visibility = Visibility.Hidden;
-
-            player4NameLabel.Visibility = Visibility.Hidden;
-            player4AnteLabel.Visibility = Visibility.Hidden;
-
-            player5NameLabel.Visibility = Visibility.Hidden;
-            player5AnteLabel.Visibility = Visibility.Hidden;
-
+            antePanel.Visibility = Visibility.Hidden;
         }
 
         public void SetupBlackBlackJack() {
             game.StartRound();
 
             currPlayerTurn = game.GetCurrentPlayer();
-            var currentPlayer = game.GetPlayer(currPlayerTurn);
 
-            currPlayerNameLabel.Visibility = Visibility.Visible;
-            currPlayerNameLabel.Content = currentPlayer.name;
-            currPlayerAnteLabel.Content = "Bet: $" + currentPlayer.currBet;
-            currPlayerBankLabel.Content = "Bank: $" + currentPlayer.bank;
+            InitPlayerInfo();
 
-            Image[] cardImages = new Image[currentPlayer.cards[0].Count];
-            for(int i = 0; i < currentPlayer.cards[0].Count; i++) {
-                cardImages[i] = CardImageCreator.VisualizeCard(currentPlayer.cards[0][i], currPlayerPanel);
+            DefaultCards();
+
+            gamePanel.Visibility = Visibility.Visible;
+            player2isHittingLabel.Visibility = Visibility.Visible;
+            player3isHittingLabel.Visibility = Visibility.Visible;
+            player4isHittingLabel.Visibility = Visibility.Visible;
+            player5isHittingLabel.Visibility = Visibility.Visible;
+            currPlayerSumLabel.Visibility = Visibility.Visible;
+            currPlayerIsHittingLabel.Visibility = Visibility.Visible;
+        }
+        public void HideBlackJack() {
+            gamePanel.Visibility = Visibility.Hidden;
+
+            player2isHittingLabel.Visibility = Visibility.Hidden;
+            player3isHittingLabel.Visibility = Visibility.Hidden;
+            player4isHittingLabel.Visibility = Visibility.Hidden;
+            player5isHittingLabel.Visibility = Visibility.Hidden;
+            currPlayerSumLabel.Visibility = Visibility.Hidden;
+            currPlayerIsHittingLabel.Visibility = Visibility.Hidden;      
+        }
+
+        // Initializes the Data Context and Bindings...
+        public void InitPlayerInfo() {
+            DefaultPlayerContext();
+
+            currPlayerPanel.Visibility = Visibility.Visible;
+            if (playerAmo > 1) {
+                player2Panel.Visibility = Visibility.Visible;
             }
+            if (playerAmo > 2) {
+                player3Panel.Visibility = Visibility.Visible;
+            }
+            if (playerAmo > 3) {
+                player4Panel.Visibility = Visibility.Visible;
+            }
+            if (playerAmo > 4) {
+                player5Panel.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void DefaultPlayerContext() {
+            var currentPlayer = game.GetPlayer(0);
+            currPlayerPanel.DataContext = null;
+            currPlayerPanel.DataContext = currentPlayer;
+            playerPanels[0] = currPlayerPanel;
 
             if (playerAmo > 1) {
                 var p = game.GetPlayer(1);
 
-                player2NameLabel.Visibility = Visibility.Visible;
-                player2AnteLabel.Visibility = Visibility.Visible;
-                player2BankLabel.Visibility = Visibility.Visible;
-
-                player2NameLabel.Content = p.name;
-                player2AnteLabel.Content = "Bet: $" + p.currBet;
-                player2BankLabel.Content = "Bank: $" + p.bank;
+                player2Panel.DataContext = null;
+                player2Panel.DataContext = p;
+                playerPanels[1] = player2Panel;
             } else {
-                player2NameLabel.Visibility = Visibility.Hidden;
-                player2AnteLabel.Visibility = Visibility.Hidden;
-                player2BankLabel.Visibility = Visibility.Hidden;
+                player2Panel.DataContext = null;
             }
             if (playerAmo > 2) {
-                var p = game.GetPlayer(1);
+                var p = game.GetPlayer(2);
 
-                player3NameLabel.Visibility = Visibility.Visible;
-                player3AnteLabel.Visibility = Visibility.Visible;
-                player3BankLabel.Visibility = Visibility.Visible;
-                player3NameLabel.Content = p.name;
-                player3AnteLabel.Content = "Bet: $" + p.currBet;
-                player3BankLabel.Content = "Bank: $" + p.bank;
+                player3Panel.DataContext = null;
+                player3Panel.DataContext = p;
+                playerPanels[2] = player3Panel;
             } else {
-                player3NameLabel.Visibility = Visibility.Hidden;
-                player3AnteLabel.Visibility = Visibility.Hidden;
-                player3BankLabel.Visibility = Visibility.Hidden;
+                player3Panel.DataContext = null;
             }
             if (playerAmo > 3) {
-                var p = game.GetPlayer(1);
+                var p = game.GetPlayer(3);
 
-                player4NameLabel.Visibility = Visibility.Visible;
-                player4AnteLabel.Visibility = Visibility.Visible;
-                player4BankLabel.Visibility = Visibility.Visible;
-                player4NameLabel.Content = p.name;
-                player4AnteLabel.Content = "Bet: $" + p.currBet;
-                player4BankLabel.Content = "Bank: $" + p.bank;
+                player4Panel.DataContext = null;
+                player4Panel.DataContext = p;
+                playerPanels[3] = player4Panel;
             } else {
-                player4NameLabel.Visibility = Visibility.Hidden;
-                player4AnteLabel.Visibility = Visibility.Hidden;
-                player4BankLabel.Visibility = Visibility.Hidden;
+                player4Panel.DataContext = null;
             }
             if (playerAmo > 4) {
-                var p = game.GetPlayer(1);
+                var p = game.GetPlayer(4);
 
-                player5NameLabel.Visibility = Visibility.Visible;
-                player5AnteLabel.Visibility = Visibility.Visible;
-                player5BankLabel.Visibility = Visibility.Visible;
-                player5NameLabel.Content = p.name;
-                player5AnteLabel.Content = "Bet: $" + p.currBet;
-                player5BankLabel.Content = "Bank: $" + p.bank;
+                player5Panel.DataContext = null;
+                player5Panel.DataContext = p;
+                playerPanels[4] = player5Panel;
             } else {
-                player5NameLabel.Visibility = Visibility.Hidden;
-                player5AnteLabel.Visibility = Visibility.Hidden;
-                player5BankLabel.Visibility = Visibility.Hidden;
+                player5Panel.DataContext = null;
+            }
+        }
+        public void DefaultCards() {
+            var currentPlayer = game.GetPlayer(0);
+
+            BindCards(currPlayerCardPanel, currentPlayer.cards[0]);
+            BindCards(houseCardPanel, game.houseCards);
+
+            if (playerAmo > 1) {
+                var p = game.GetPlayer(1);
+                BindCards(player2CardPanel, p.cards[0]);
+            } else {
+                player2CardPanel.Children.Clear();
+            }
+            if (playerAmo > 2) {
+                var p = game.GetPlayer(2);
+                BindCards(player3CardPanel, p.cards[0]);
+            } else {
+                player3CardPanel.Children.Clear();
+            }
+            if (playerAmo > 3) {
+                var p = game.GetPlayer(3);
+                BindCards(player4CardPanel, p.cards[0]);
+            } else {
+                player4CardPanel.Children.Clear();
+            }
+            if (playerAmo > 4) {
+                var p = game.GetPlayer(4);
+                BindCards(player5CardPanel, p.cards[0]);
+            } else {
+                player5CardPanel.Children.Clear();
+            }
+        }
+        public void RemoveCards() {
+            currPlayerCardPanel.Children.Clear();
+            houseCardPanel.Children.Clear();
+
+            if (playerAmo > 1) {
+                player2CardPanel.Children.Clear();
+            }
+            if (playerAmo > 2) {
+                player3CardPanel.Children.Clear();
+            }
+            if (playerAmo > 3) {
+                player4CardPanel.Children.Clear();
+            }
+            if (playerAmo > 4) {
+                player5CardPanel.Children.Clear();
+            }
+        }
+
+        public void BindCards(Panel parent, List<Card> cards) {
+            parent.Children.Clear();
+
+            Image[] cardImages = new Image[cards.Count];
+            for (int i = 0; i < cards.Count; i++) {
+                Card c = cards[i];
+                cardImages[i] = CardImageCreator.VisualizeCard(c, parent);
+            }
+        }
+
+        public Panel GetCardPanel(Panel playerPanel) {
+            if(playerPanel == player2Panel) {
+                return player2CardPanel;
+            } else if (playerPanel == player3Panel) {
+                return player3CardPanel;
+            } else if (playerPanel == player4Panel) {
+                return player4CardPanel;
+            } else if (playerPanel == player5Panel) {
+                return player5CardPanel;
+            } else if (playerPanel == currPlayerPanel) {
+                return currPlayerCardPanel;
+            }else {
+                return null;
             }
         }
 

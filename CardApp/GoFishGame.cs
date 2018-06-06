@@ -17,7 +17,7 @@ namespace CardApp {
 		public static int PLAYER_AMO = 2;
         public static int STARTING_CARDS = 5;
         public static int CARDS_RECIEVED_WHEN_EMPTY = 5;
-        Deck deck;
+        public Deck deck;
 
         [Serializable]
         public class Player {
@@ -28,9 +28,14 @@ namespace CardApp {
 
         Player[] players;
         int currPlayer;
+        public bool hasAsked;
+        public bool hasFished;
+
         List<Label> playerNamesLabels;
         List<Label> playerScoresLabels;
         List<StackPanel> nonActivePlayerHands;
+
+        private Card selectedCard;
 
         //IEnumerable<int> placements;
         bool gameHasEnded = false;
@@ -112,63 +117,46 @@ namespace CardApp {
                     }
                 }
             }
-            VisualizeActivePlayer();
-            int loopIndex = 0;
-            int activeLane = 0;
-            foreach (Player player in players)
-            {
-                if (currPlayer != loopIndex)
-                {
-                    VisualizePlayer(player, playerNamesLabels[activeLane], playerScoresLabels[activeLane], nonActivePlayerHands[activeLane]);
-                    activeLane++;
-                }
-                loopIndex++;
-            }
+            VisualizePlayers();
             type = GameType.GoFish;
         }
 
-        public void TakePlayerTurn(int playerTurn, int playerToTake, Card chosenCard) {
-            if (gameHasEnded) {
-                MessageBox.Show("Game has ended!");
-                return;
-            }
-
-            // Invliad Player Turn
-            if(playerTurn != currPlayer) {
-                MessageBox.Show("The wrong player is taking their turn!");
-                return;
-            }
-
-            // cAn NOT TAKE FROM yourself.
-            if(playerTurn == playerToTake) {
-                MessageBox.Show("You can not take a card from yourself!");
-                return;
-            }
-
-            // Validate Chosen Card is in player's Deck / Hand
-            if (!players[playerTurn].Hand.HasCard(chosenCard)) {
-                MessageBox.Show("Player can not Choose a card not part of their handw!");
-                return;
-            }
-
-            // Try to Take Card
-            if(TakePlayerCard(players[playerTurn], players[playerToTake], chosenCard)) {
-                if(players[playerTurn].Hand.cards.Count == 0) {
-                    for (int i = 0; i < CARDS_RECIEVED_WHEN_EMPTY; i++) {
-                        GrabCardFromDeck(players[playerTurn]);
-                        if (deck.cards.Count == 0) { Exit(); return; }
-                    }
+        public void NextPlayerTakeTurn()
+        {
+            if (hasAsked && (hasFished || deck.cards.Count == 0))
+            {
+                hasFished = false;
+                hasAsked = false;
+                int cardsHeld = 0;
+                foreach (Player player in players)
+                {
+                    cardsHeld += player.Hand.cards.Count;
                 }
-            } else { // If it didn't work...
-                GrabCardFromDeck(players[playerTurn]);
+                if (cardsHeld == 0)
+                {
+                    Exit();
+                } else
+                {
+                    do
+                    {
+                        if (++currPlayer >= players.Length)
+                        {
+                            currPlayer = 0;
+                        }
+                    } while (players[currPlayer].Hand.cards.Count == 0);
+                    VisualizePlayers();
+                }
+                page.lblInstructions.Content = "Select a card rank to ask for";
+            }
+        }
 
-                // Check for End of Game...
-                if (deck.cards.Count == 0) { Exit(); return; }
-
-
-                // Increment Player
-                if (++currPlayer >= players.Length) {
-                    currPlayer = 0;
+        private void DrawCardsIfHandEmpty(Player player)
+        {
+            if (player.Hand.cards.Count == 0)
+            {
+                for (int i = 0; i < CARDS_RECIEVED_WHEN_EMPTY; i++)
+                {
+                    GrabCardFromDeck(player);
                 }
             }
         }
@@ -184,13 +172,25 @@ namespace CardApp {
         /// <param name="card"></param>
         /// <returns></returns>
         public bool TakePlayerCard(Player playerTaking, Player playerTaken, Card card) {
-            if(CheckPlayerCard(playerTaken, card)) {
-                playerTaken.Hand.RemoveCard(card);
-                playerTaking.Hand.AddCard(card);
-                CheckForPairs(playerTaking, card);
+            Card found = playerTaken.Hand.cards.Find(x => x.Rank == card.Rank);
+            if (found != null) {
+                playerTaken.Hand.RemoveCard(found);
+                playerTaking.Hand.AddCard(found);
+                CheckForPairs(playerTaking, found);
+                DrawCardsIfHandEmpty(playerTaking);
+                DrawCardsIfHandEmpty(playerTaken);
                 return true;
             }
             return false;
+        }
+
+        public void CurrentPlayerGoFish()
+        {
+            if (!hasFished)
+            {
+                GrabCardFromDeck(players[currPlayer]);
+                hasFished = true;
+            }
         }
 
         /// <summary>
@@ -207,11 +207,26 @@ namespace CardApp {
         /// Takes a card from the "Deck" pile and adds it to the player's Hand
         /// </summary>
         /// <param name="player"></param>
-        public void GrabCardFromDeck(Player player) {
-            Card c = deck.GetCard(deck.cards.Count-1);
-            deck.RemoveCard(deck.cards.Count - 1);
-            player.Hand.AddCard(c);
-            CheckForPairs(player, c);
+        public bool GrabCardFromDeck(Player player)
+        {
+            if (deck.cards.Count > 0)
+            {
+                Card c = deck.GetCard(deck.cards.Count-1);
+                deck.RemoveCard(deck.cards.Count - 1);
+                player.Hand.AddCard(c);
+                CheckForPairs(player, c);
+                return true;
+            }
+            return false;
+        }
+
+        public void HideActivePlayerCards()
+        {
+            foreach (Card card in players[currPlayer].Hand.cards)
+            {
+                VisualizeActivePlayer(!card.IsFlipped);
+                break;
+            }
         }
 
         /// <summary>
@@ -222,17 +237,36 @@ namespace CardApp {
         /// <param name="player"></param>
         /// <param name="cardGained"></param>
         public void CheckForPairs(Player player, Card cardGained) {
-            var cards = player.Hand.cards.Where((x) => x.Rank == cardGained.Rank);
-            if (cards.Count() >= 2) {
-                for (int i = 0; i < 2; i++) {
-                    Card pair = cards.ElementAt(i);
+            var cards = player.Hand.cards.Where((x) => x.Rank == cardGained.Rank).ToList();
+            if (cards.Count >= 2)
+            {
+                foreach (Card pair in cards)
+                {
                     player.Hand.RemoveCard(pair);
                     player.Pairs.AddCard(pair);
                 }
             }
+            VisualizePlayers();
         }
 
-        public void VisualizeActivePlayer()
+        public void VisualizePlayers()
+        {
+            page.lblDeckSize.Content = deck.cards.Count;
+            VisualizeActivePlayer();
+            int loopIndex = 0;
+            int activeLane = 0;
+            foreach (Player player in players)
+            {
+                if (currPlayer != loopIndex)
+                {
+                    VisualizePlayer(player, playerNamesLabels[activeLane], playerScoresLabels[activeLane], nonActivePlayerHands[activeLane]);
+                    activeLane++;
+                }
+                loopIndex++;
+            }
+        }
+
+        public void VisualizeActivePlayer(bool cardsFlipped = false)
         {
             page.ActiveHand.Children.Clear();
             page.lblActivePlayerName.Content = players[currPlayer].name;
@@ -240,7 +274,7 @@ namespace CardApp {
             Deck hand = players[currPlayer].Hand;
             foreach (Card card in hand.cards)
             {
-                card.IsFlipped = false;
+                card.IsFlipped = cardsFlipped;
                 Image image = CardImageCreator.VisualizeCard(card, page.ActiveHand);
                 image.Margin = new Thickness(-hand.cards.Count * 4, 0, 0, 0);
                 image.MouseDown += IndicateCardSelection;
@@ -257,14 +291,63 @@ namespace CardApp {
                 card.IsFlipped = true;
                 Image image = CardImageCreator.VisualizeCard(card, hold);
                 image.Margin = new Thickness(-20, 0, 0, 0);
+                image.MouseDown += CardAsk;
             }
         }
 
         public void IndicateCardSelection(object sender, RoutedEventArgs e)
         {
-            Card card = (Card)((Image)sender).DataContext;
-            card.IsFlipped = !card.IsFlipped;
+            if (!hasAsked)
+            {
+                Card card = (Card)((Image)sender).DataContext;
+                Thickness margin = ((Image)sender).Margin;
+                if (selectedCard != null)
+                {
+                    margin.Top = 0;
+                    selectedCard.image.Margin = margin;
+                }
+                if (card != selectedCard)
+                {
+                    margin.Top = -20;
+                    ((Image)sender).Margin = margin;
+                    selectedCard = card;
+                } else
+                {
+                    selectedCard = null;
+                }
+            }
         }
+
+        public void CardAsk(object sender, RoutedEventArgs e)
+        {
+            if (!hasAsked)
+            {
+                hasAsked = true;
+                Card askCard = (Card)((Image)sender).DataContext;
+                if (selectedCard != null)
+                {
+                    foreach (Player player in players)
+                    {
+                        if (player != players[currPlayer] && CheckPlayerCard(player, askCard))
+                        {
+                            bool tookCard = TakePlayerCard(players[currPlayer], player, selectedCard);
+                            if (tookCard)
+                            {
+                                page.lblInstructions.Content = "You took a card, go again!";
+                                hasAsked = false;
+                            } else
+                            {
+                                page.lblInstructions.Content = "Go fish";
+                                selectedCard = null;
+                                VisualizePlayers();
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
 

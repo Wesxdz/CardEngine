@@ -8,7 +8,7 @@
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="GoFishPage">
 
-    <Grid Background="#503951">
+    <Grid Background="#FF353535">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
@@ -20,8 +20,8 @@
         </Grid.RowDefinitions>
         <Grid Name="Table" Background="#347047" Grid.ColumnSpan="3">
             <StackPanel Grid.Column="2" >
-                <Button Name="btnGFBack" Content="Exit" Click="btnGFBack_Click"  VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch"/>
-                <Button Name="btnSave" Click="btnSave_Click" Content="Save" VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch"/>
+                <Button Name="btnGFBack" Content="Exit" Click="btnGFBack_Click"  VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch" Background="#FFFEC123"/>
+                <Button Name="btnSave" Click="btnSave_Click" Content="Save" VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch" Background="#FFFFDC03"/>
             </StackPanel>
             <StackPanel Name="Player1Hand" Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             </StackPanel>

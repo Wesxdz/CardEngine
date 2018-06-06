@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BlackJackSetupPage">
 
-    <StackPanel Orientation="Vertical">
-        <Label Content="BlackJack"  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="36" />
-        <Label Content="Add and Remove between 1 and 5 Players"  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+    <StackPanel Orientation="Vertical" Background="#FF353535">
+        <Label Content="BlackJack"  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="36" FontFamily="Engravers MT" />
+        <Label Content="Add and Remove between 1 and 5 Players"  Margin="0,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
         <Grid Margin="200, 10, 200, 50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
@@ -25,11 +25,11 @@
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="player1Label" Content="Player 1: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
-            <Label x:Name="player2Label" Content="Player 2: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
-            <Label x:Name="player3Label" Visibility="Hidden" Content="Player 3: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
-            <Label x:Name="player4Label" Visibility="Hidden" Content="Player 4: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
-            <Label x:Name="player5Label" Visibility="Hidden" Content="Player 5: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
+            <Label x:Name="player1Label" Content="Player 1: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Foreground="#FFF9F9F9"/>
+            <Label x:Name="player2Label" Content="Player 2: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Foreground="#FFF9F9F9"/>
+            <Label x:Name="player3Label" Visibility="Hidden" Content="Player 3: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Foreground="#FFF9F9F9"/>
+            <Label x:Name="player4Label" Visibility="Hidden" Content="Player 4: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" Foreground="#FFF9F9F9"/>
+            <Label x:Name="player5Label" Visibility="Hidden" Content="Player 5: "  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Foreground="#FFF9F9F9"/>
 
             <TextBox x:Name="player1Text" Text="Player 1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="0"/>
             <TextBox x:Name="player2Text" Text="Player 2" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="1"/>
@@ -37,11 +37,11 @@
             <TextBox x:Name="player4Text" Text="Player 4" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="3"/>
             <TextBox x:Name="player5Text" Text="Player 5" Visibility="Hidden" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="4"/>
 
-            <Button x:Name="addPlayerBtn" Content="Add Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="addPlayerBtn_Click"/>
-            <Button x:Name="removePlayerBtn" Content="Remove Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="removePlayerBtn_Click"/>
+            <Button x:Name="addPlayerBtn" Content="Add Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="addPlayerBtn_Click" Background="#FFFFDC03"/>
+            <Button x:Name="removePlayerBtn" Content="Remove Player" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="5" Width="100" Click="removePlayerBtn_Click" Background="#FFFEC123"/>
 
-            <Button x:Name="submitBtn" Content="Play" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="submitBtn_Click"/>
-            <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="backBtn_Click"/>
+            <Button x:Name="submitBtn" Content="Play" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="submitBtn_Click" Background="#FFFFDC03"/>
+            <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Width="100" Click="backBtn_Click" Background="#FFFEC123"/>
 
         </Grid>
     </StackPanel>

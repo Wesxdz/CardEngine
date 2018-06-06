@@ -7,25 +7,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WarPage">
-	<Grid>
+	<Grid Background="#FF353535">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
 			<ColumnDefinition Width="40"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<Label Grid.Column="1" VerticalAlignment="Center" Content="VS" HorizontalContentAlignment="Center"/>
-		<Button Click="btnStart_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="TO WAR!" Grid.ColumnSpan="3" Margin="351,275,349,155"/>
-		<Button Click="btnLoad_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Content="Load Game" Grid.ColumnSpan="3" Margin="359,331,361,99"/>
-		<Button Click="btnBack_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Content="Back to Safety" Grid.ColumnSpan="3" Margin="359,356,361,74"/>
+		<Label Grid.Column="1" VerticalAlignment="Center" Content="VS" HorizontalContentAlignment="Center" Foreground="White"/>
+		<Button Click="btnStart_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="TO WAR!" Grid.ColumnSpan="3" Margin="351,275,349,155" Background="#FFFFDC03"/>
+		<Button Click="btnLoad_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Content="Load Game" Grid.ColumnSpan="3" Margin="359,331,361,99" Background="#FFFFDC03"/>
+		<Button Click="btnBack_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Content="Back to Safety" Grid.ColumnSpan="3" Margin="359,356,361,74" Background="#FFFEC123"/>
 
-		<Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Player 1" Margin="0,186,22,238"/>
+		<Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Player 1" Margin="0,186,22,238" Foreground="White"/>
 		<TextBox x:Name="txtP1Name" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Player 1" Width="100"/>
 		<CheckBox x:Name="cbxP1Computer" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,243,66,192"/>
-		<Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Computer" Margin="0,238,0,186"/>
+		<Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Computer" Margin="0,238,0,186" Foreground="White"/>
 
-		<Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Player 2" Margin="22,186,0,238"/>
+		<Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Player 2" Margin="22,186,0,238" Foreground="White"/>
 		<TextBox x:Name="txtP2Name" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Text="Player 2"/>
 		<CheckBox x:Name="cbxP2Computer" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,244,0,191"/>
-		<Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Computer" Margin="22,238,0,186"/>
+		<Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Computer" Margin="22,238,0,186" Foreground="White"/>
 	</Grid>
 </Page>

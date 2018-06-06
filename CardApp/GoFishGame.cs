@@ -104,7 +104,7 @@ namespace CardApp {
 
                     Card possiblePair = players[y].Hand.cards.Find((x) => x.Rank == playerCard.Rank);
                     if (possiblePair != null) {
-                        players[y].Hand.RemoveCard(possiblePair);
+                        players[y].Hand.SetAside(possiblePair);
                         players[y].Pairs.AddCard(possiblePair);
                         players[y].Pairs.AddCard(playerCard);
                     } else {
@@ -185,7 +185,7 @@ namespace CardApp {
         /// <returns></returns>
         public bool TakePlayerCard(Player playerTaking, Player playerTaken, Card card) {
             if(CheckPlayerCard(playerTaken, card)) {
-                playerTaken.Hand.RemoveCard(card);
+                playerTaken.Hand.SetAside(card);
                 playerTaking.Hand.AddCard(card);
                 CheckForPairs(playerTaking, card);
                 return true;
@@ -226,7 +226,7 @@ namespace CardApp {
             if (cards.Count() >= 2) {
                 for (int i = 0; i < 2; i++) {
                     Card pair = cards.ElementAt(i);
-                    player.Hand.RemoveCard(pair);
+                    player.Hand.SetAside(pair);
                     player.Pairs.AddCard(pair);
                 }
             }

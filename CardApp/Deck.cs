@@ -49,6 +49,7 @@ namespace CardApp {
         public Card GetCard() {
             if (cards.Count < 1) {
                 cards.AddRange(usedCards);
+                Shuffle();
                 usedCards.Clear();
             }
 
@@ -74,6 +75,19 @@ namespace CardApp {
         /// </summary>
         /// <param name="card"></param>
         /// <returns></returns>
+        public bool SetAside(Card card) {
+            bool success = cards.Remove(card);
+            if (success) {
+                usedCards.Add(card);
+            }
+            return success;
+        }
+
+        /// <summary>
+        /// Removes the specified card.
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         public bool RemoveCard(Card card) {
             bool success = cards.Remove(card);
             if (success) {
@@ -81,6 +95,7 @@ namespace CardApp {
             }
             return success;
         }
+
         /// <summary>
         /// Removes the card at index and adds it to UsedCards.
         /// </summary>

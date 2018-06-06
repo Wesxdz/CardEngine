@@ -30,26 +30,30 @@ namespace CardApp {
         private void submitBtn_Click(object sender, RoutedEventArgs e) {
             int playerAmo = 1;
             if(player2Text.Visibility == Visibility.Visible) { playerAmo++; }
-            else if(player3Text.Visibility == Visibility.Visible) { playerAmo++; }
-            else if (player4Text.Visibility == Visibility.Visible) { playerAmo++; }
-            else if (player5Text.Visibility == Visibility.Visible) { playerAmo++; }  
+            if(player3Text.Visibility == Visibility.Visible) { playerAmo++; }
+            if (player4Text.Visibility == Visibility.Visible) { playerAmo++; }
+            if (player5Text.Visibility == Visibility.Visible) { playerAmo++; }  
 
             BlackJackPage blackJackPage = new BlackJackPage();
             blackJackPage.playerAmo = playerAmo;
             blackJackPage.playerNames = new string[playerAmo];
 
-            blackJackPage.playerNames[0] = player1Text.Text;
+            int playerIndex = 0;
+            blackJackPage.playerNames[playerIndex++] = player1Text.Text;
             if(player2Text.Visibility == Visibility.Visible) {
-                blackJackPage.playerNames[1] = player2Text.Text;
-            } else if(player3Text.Visibility == Visibility.Visible) {
-                blackJackPage.playerNames[2] = player3Text.Text;
-            } else if (player4Text.Visibility == Visibility.Visible) {
-                blackJackPage.playerNames[3] = player4Text.Text;
-            } else if (player5Text.Visibility == Visibility.Visible) {
-                blackJackPage.playerNames[4] = player5Text.Text;
+                blackJackPage.playerNames[playerIndex++] = player2Text.Text;
             }
-            //Uri page = new Uri("BlackJackPage.xaml", UriKind.Relative);
+            if (player3Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[playerIndex++] = player3Text.Text;
+            }
+            if (player4Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[playerIndex++] = player4Text.Text;
+            }
+            if (player5Text.Visibility == Visibility.Visible) {
+                blackJackPage.playerNames[playerIndex++] = player5Text.Text;
+            }
 
+            blackJackPage.Initialize();
             NavigationService.Navigate(blackJackPage);
         }
 

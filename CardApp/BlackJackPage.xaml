@@ -8,39 +8,129 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BlackJackPage">
 
-    <!--<DockPanel>-->
-
-    <!--<StackPanel DockPanel.Dock="Top">
-            <Button Content="Top" />
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Left">
-            <Button Content="Left" />
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Right">
-            <Button Content="Right" />
-        </StackPanel>-->
-
-    <!--</DockPanel>-->
-
     <Grid DockPanel.Dock="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="currPlayerPanel" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="leftPanel" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="housePanel" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
-        <StackPanel x:Name="rightPanel" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF6FDEFA" />
+        <Border Grid.Row="2" Grid.Column="1" Background="#FF605AA8" BorderBrush="Black" BorderThickness="2">
+            <StackPanel x:Name="currPlayerPanel" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="currPlayerNameLabel" Content="{Binding Path=name}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="currPlayerAnteLabel" Content="{Binding Path=currBet}" ContentStringFormat="Bet: ${0}" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="currPlayerBankLabel" Content="{Binding Path=bank}" ContentStringFormat="Bank: ${0}" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+                <UniformGrid x:Name="currPlayerCardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
 
-        <StackPanel x:Name="centerPanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF74D57A" />
+                </UniformGrid>
+                <StackPanel x:Name="currPlayerGamePanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="currPlayerSumLabel" Content="{Binding Path=sum}" ContentStringFormat="Sum: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="currPlayerIsHittingLabel" Content="{Binding Path=isHitting[0]}" ContentStringFormat="IsHitting: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
 
-        <Button x:Name="backBtn" Content="Back"  Grid.Row="2" Grid.Column="2"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" />
+        <!--Left Side-->
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="2"  Background="#FF605AA8">
+            <StackPanel x:Name="leftPanel" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <StackPanel x:Name="player2Panel" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="player2NameLabel" Content="{Binding Path=name}"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player2AnteLabel" Content="{Binding Path=currBet}" ContentStringFormat="Bet: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player2BankLabel" Content="{Binding Path=bank}" ContentStringFormat="Bank: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!--<Label x:Name="player2sumLabel" Content="{Binding Path=sum}" ContentStringFormat="Sum: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <Label x:Name="player2isHittingLabel" Content="{Binding Path=isHitting[0]}" ContentStringFormat="IsHitting: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <UniformGrid x:Name="player2CardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+
+                    </UniformGrid>
+                </StackPanel>
+                <StackPanel x:Name="player4Panel" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Separator Background="Black"  />
+                    <Label x:Name="player4NameLabel" Content="{Binding Path=name}"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player4AnteLabel" Content="{Binding Path=currBet}" ContentStringFormat="Bet: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player4BankLabel" Content="{Binding Path=bank}" ContentStringFormat="Bank: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <!--<Label x:Name="player4sumLabel" Content="{Binding Path=sum}" ContentStringFormat="Sum: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <Label x:Name="player4isHittingLabel" Content="{Binding Path=isHitting[0]}" ContentStringFormat="IsHitting: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <UniformGrid x:Name="player4CardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+
+                    </UniformGrid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--Right Side-->
+        <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="2" Background="#FF605AA8">
+            <StackPanel x:Name="rightPanel" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel x:Name="player3Panel" Visibility="Hidden" VerticalAlignment="Center">
+                    <Label x:Name="player3NameLabel" Content="{Binding Path=name}"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                    <Label x:Name="player3AnteLabel" Content="{Binding Path=currBet}" ContentStringFormat="Bet: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player3BankLabel" Content="{Binding Path=bank}" ContentStringFormat="Bank: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <!--<Label x:Name="player3sumLabel" Content="{Binding Path=sum}" ContentStringFormat="Sum: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <Label x:Name="player3isHittingLabel" Content="{Binding Path=isHitting[0]}" ContentStringFormat="IsHitting: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <UniformGrid x:Name="player3CardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        
+                    </UniformGrid>
+                </StackPanel>
+                <StackPanel x:Name="player5Panel" Visibility="Hidden" VerticalAlignment="Center">
+                    <Separator Background="Black"  />
+                    <Label x:Name="player5NameLabel" Content="{Binding Path=name}"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player5AnteLabel" Content="{Binding Path=currBet}" ContentStringFormat="Bet: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label x:Name="player5BankLabel" Content="{Binding Path=bank}" ContentStringFormat="Bank: ${0}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <!--<Label x:Name="player5sumLabel" Content="{Binding Path=sum}" ContentStringFormat="Sum: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <Label x:Name="player5isHittingLabel" Content="{Binding Path=isHitting[0]}" ContentStringFormat="IsHitting: {0}"  Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <UniformGrid x:Name="player5CardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    </UniformGrid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--House-->
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="1" Background="#FF605AA8" >
+            <StackPanel x:Name="housePanel" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF605AA8">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label x:Name="houseNameLabel" Content="House"  Margin="10,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+                <UniformGrid x:Name="houseCardPanel" Rows="1" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+
+        <!--Center-->
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="1" Background="#FF347047">
+            <Grid x:Name="centerPanel" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+
+                
+                <Button x:Name="saveBtn" Content="Save" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="saveBtn_Click"/>
+                <Button x:Name="loadBtn" Content="Load" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="loadBtn_Click"/>
+                <Button x:Name="backBtn" Content="Exit" Width="70" Height="30" Margin="0,-40,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="backBtn_Click"/>
+
+                <StackPanel x:Name="antePanel" Margin="0,40,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <ComboBox x:Name="anteComboBox" Width="70" Height="20" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Button x:Name="anteBtn" Content="Ante up!" Width="70" Height="30" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="anteBtn_Click" />
+                </StackPanel>
+
+                <StackPanel x:Name="gamePanel" Margin="0,40,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Button x:Name="passBtn" Content="Pass!" Width="70" Height="30" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="passBtn_Click"/>
+                    <Button x:Name="hitBtn" Content="Hit!" Width="70" Height="30" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="hitBtn_Click"/>
+                </StackPanel>
+                
+            </Grid>
+        </Border>
     </Grid>
 </Page>
